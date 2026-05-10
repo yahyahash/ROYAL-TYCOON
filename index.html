@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1610">
+<meta name="description" content="Royal Tycoon Group — a Dubai-based conglomerate spanning twelve industries, delivering tailored solutions in trading, real estate, hospitality, finance and more.">
+<meta property="og:title" content="Royal Tycoon Group — Multi-Industry Excellence">
+<meta property="og:description" content="A diversified Dubai conglomerate delivering excellence across twelve industries.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
 <title>Royal Tycoon Group — Multi-Industry Excellence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,45 +39,31 @@
     font-family: var(--sans);
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+  body.nav-open { overflow: hidden; }
 
-  /* Custom cursor */
-  .cursor {
-    position: fixed;
-    width: 8px; height: 8px;
-    background: var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background 0.2s;
+  :where(a, button, input, textarea):focus { outline: none; }
+  :where(a, button, input, textarea):focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(176,141,62,0.6);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: width 0.35s ease, height 0.35s ease, transform 0.08s ease;
-  }
-  body:hover .cursor { opacity: 1; }
 
   /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    padding: 28px 60px;
+    padding: 24px clamp(20px, 5vw, 60px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     transition: padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s;
   }
   nav.scrolled {
-    padding: 18px 60px;
+    padding: 16px clamp(20px, 5vw, 60px);
     background: rgba(255,255,255,0.94);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -141,15 +133,153 @@
     border-color: var(--gold);
   }
 
+  /* HAMBURGER */
+  .nav-toggle {
+    display: none;
+    width: 44px; height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: #1a1610;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+  body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* MOBILE DRAWER */
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8,8,8,0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .drawer-backdrop.visible { opacity: 1; }
+
+  .mobile-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(420px, 88vw);
+    height: 100dvh;
+    background: #faf6ee;
+    border-left: 1px solid rgba(176,141,62,0.18);
+    z-index: 1200;
+    padding: 32px clamp(24px, 6vw, 48px) 40px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+  .mobile-drawer.visible { transform: translateX(0); }
+
+  .drawer-close {
+    align-self: flex-end;
+    width: 44px; height: 44px;
+    background: transparent;
+    border: 1px solid rgba(176,141,62,0.25);
+    color: #1a1610;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .drawer-close:hover { border-color: var(--gold); color: var(--gold); }
+
+  .drawer-logo {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: #1a1610;
+    text-decoration: none;
+    margin: 24px 0 8px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .drawer-logo span {
+    font-size: 10px;
+    font-family: var(--sans);
+    font-weight: 200;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .drawer-links {
+    list-style: none;
+    margin-top: 40px;
+    border-top: 1px solid rgba(176,141,62,0.12);
+  }
+  .drawer-links li { border-bottom: 1px solid rgba(176,141,62,0.12); }
+  .drawer-links a {
+    display: block;
+    padding: 18px 0;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: #1a1610;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+  }
+  .drawer-links a:hover { color: var(--gold); padding-left: 8px; }
+
+  .drawer-cta {
+    margin-top: 32px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--gold);
+    text-decoration: none;
+    text-align: center;
+    padding: 18px 32px;
+    transition: background 0.3s;
+  }
+  .drawer-cta:hover { background: var(--gold-light); }
+
+  .drawer-footer {
+    margin-top: auto;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .drawer-footer a {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(26,22,16,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .drawer-footer a:hover { color: var(--gold); }
+
   /* HERO */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 60px 80px;
+    padding: 120px clamp(20px, 5vw, 60px) clamp(48px, 10vw, 80px);
     overflow: hidden;
   }
   .hero-bg {
@@ -278,7 +408,7 @@
   /* HERO SCROLL INDICATOR */
   .hero-scroll {
     position: absolute;
-    bottom: 40px; right: 60px;
+    bottom: 40px; right: clamp(20px, 5vw, 60px);
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -306,7 +436,7 @@
     background: #1a1610;
     border-top: 1px solid rgba(176,141,62,0.2);
     border-bottom: 1px solid rgba(176,141,62,0.2);
-    padding: 48px 60px;
+    padding: 48px clamp(20px, 5vw, 60px);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
@@ -322,14 +452,14 @@
   .stat-item.visible { opacity: 1; transform: translateY(0); }
   .stat-num {
     font-family: var(--serif);
-    font-size: 64px;
+    font-size: clamp(40px, 9vw, 64px);
     font-weight: 300;
     color: var(--gold);
     line-height: 1;
     letter-spacing: -0.02em;
   }
   .stat-num sup {
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     vertical-align: super;
     font-weight: 300;
   }
@@ -345,7 +475,7 @@
 
   /* SECTION COMMON */
   section {
-    padding: 120px 60px;
+    padding: clamp(72px, 12vw, 120px) clamp(20px, 5vw, 60px);
   }
   .section-tag {
     font-family: var(--sans);
@@ -402,7 +532,6 @@
   .company-card {
     position: relative;
     overflow: hidden;
-    cursor: none;
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
@@ -448,7 +577,7 @@
   .card-content {
     position: relative;
     z-index: 2;
-    padding: 36px 40px 40px;
+    padding: clamp(24px, 4vw, 40px);
   }
 
   .company-num {
@@ -463,7 +592,7 @@
 
   .company-name {
     font-family: var(--serif);
-    font-size: 26px;
+    font-size: clamp(22px, 2.5vw, 26px);
     font-weight: 400;
     line-height: 1.2;
     margin-bottom: 12px;
@@ -525,7 +654,7 @@
 
   /* Wide card (spans 2 cols) */
   .company-card.wide { grid-column: span 2; }
-  .company-card.wide .company-name { font-size: 36px; }
+  .company-card.wide .company-name { font-size: clamp(26px, 3.5vw, 36px); }
   .company-card.wide { min-height: 420px; }
 
   /* ABOUT */
@@ -554,27 +683,31 @@
   }
   .about-image-badge {
     position: absolute;
-    bottom: -32px; right: -32px;
-    background: var(--gold);
-    color: var(--black);
-    padding: 32px 40px;
-    text-align: center;
+    bottom: 20px; left: 20px;
+    background: rgba(15,12,8,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(196,165,90,0.35);
+    color: #f5f0e8;
+    padding: 18px 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
   }
   .about-image-badge .big {
     font-family: var(--serif);
-    font-size: 52px;
+    font-size: 36px;
     font-weight: 300;
     line-height: 1;
-    display: block;
+    color: var(--gold-light);
   }
   .about-image-badge .small {
     font-family: var(--sans);
     font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    font-weight: 300;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    margin-top: 6px;
-    display: block;
+    color: rgba(245,240,232,0.8);
   }
   .about-body {
     padding-top: 20px;
@@ -593,7 +726,7 @@
   }
   .about-quote {
     font-family: var(--serif);
-    font-size: 26px;
+    font-size: clamp(20px, 3vw, 28px);
     font-weight: 300;
     font-style: italic;
     color: var(--gold-light);
@@ -717,7 +850,7 @@
     grid-template-columns: 1fr 1fr;
   }
   .mv-panel {
-    padding: 120px 80px;
+    padding: clamp(72px, 10vw, 120px) clamp(28px, 6vw, 80px);
     position: relative;
     overflow: hidden;
   }
@@ -753,7 +886,7 @@
   }
   .mv-title {
     font-family: var(--serif);
-    font-size: 48px;
+    font-size: clamp(34px, 5.5vw, 48px);
     font-weight: 300;
     color: #f5f0e8;
     margin-bottom: 32px;
@@ -819,9 +952,20 @@
   }
   .csr-act:hover { border-top-color: var(--gold); }
   .csr-act-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 14px;
+    color: var(--gold);
+    border: 1px solid rgba(196,165,90,0.2);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .csr-act-icon svg { width: 20px; height: 20px; }
+  .csr-act:hover .csr-act-icon {
+    border-color: var(--gold);
+    background: var(--gold-dim);
   }
   .csr-act-name {
     font-size: 12px;
@@ -839,7 +983,7 @@
   }
   .csr-highlight {
     font-family: var(--serif);
-    font-size: 28px;
+    font-size: clamp(20px, 3vw, 28px);
     font-weight: 300;
     font-style: italic;
     color: var(--gold-light);
@@ -855,57 +999,56 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    align-items: center;
+    align-items: start;
     margin-top: 72px;
   }
-  .value-bars { }
-  .value-item {
-    margin-bottom: 36px;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+  .value-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .value-item.visible { opacity: 1; transform: translateX(0); }
-  .value-head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
+  .value-card {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(176,141,62,0.12);
+    align-items: baseline;
+  }
+  .value-card:last-child { border-bottom: 1px solid rgba(176,141,62,0.12); }
+  .value-numeral {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
   }
   .value-name {
     font-family: var(--sans);
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--white);
+    margin: 0 0 8px;
   }
-  .value-pct {
-    font-family: var(--serif);
-    font-size: 20px;
+  .value-desc {
+    font-family: var(--sans);
+    font-size: 14px;
     font-weight: 300;
-    color: var(--gold);
-  }
-  .value-track {
-    height: 1px;
-    background: rgba(248,245,239,0.08);
-    position: relative;
-  }
-  .value-fill {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%;
-    background: linear-gradient(to right, var(--gold), var(--gold-light));
-    width: 0;
-    transition: width 1.5s ease;
+    color: var(--white-dim);
+    line-height: 1.7;
+    grid-column: 2;
   }
   .values-quote {
-    padding: 60px;
+    padding: clamp(32px, 5vw, 60px);
     background: #1a1610;
     border: 1px solid rgba(176,141,62,0.2);
   }
   .values-quote-text {
     font-family: var(--serif);
-    font-size: 32px;
+    font-size: clamp(22px, 3.5vw, 32px);
     font-weight: 300;
     font-style: italic;
     color: #f5f0e8;
@@ -923,7 +1066,7 @@
   /* CONTACT */
   .contact-section {
     background: var(--black-2);
-    padding: 120px 60px;
+    padding: clamp(72px, 12vw, 120px) clamp(20px, 5vw, 60px);
   }
   .contact-grid {
     display: grid;
@@ -1008,7 +1151,7 @@
     background: var(--gold);
     border: none;
     padding: 18px 52px;
-    cursor: none;
+    cursor: pointer;
     transition: background 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
@@ -1016,12 +1159,23 @@
     margin-top: 8px;
   }
   .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-status {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-top: 20px;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .form-status.visible { opacity: 1; }
 
   /* FOOTER */
   footer {
     background: #1a1610;
     border-top: 1px solid rgba(176,141,62,0.15);
-    padding: 80px 60px 48px;
+    padding: 80px clamp(20px, 5vw, 60px) 48px;
   }
   .footer-top {
     display: grid;
@@ -1145,17 +1299,102 @@
     background: var(--gold);
     margin: 32px 0;
   }
+
+  /* RESPONSIVE — TABLET ≤ 960px */
+  @media (max-width: 960px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-toggle { display: inline-flex; }
+
+    .hero { min-height: 88svh; }
+    .hero-tag { font-size: 10px; letter-spacing: 0.3em; }
+    .hero-actions { flex-wrap: wrap; gap: 20px; }
+    .hero-scroll { display: none; }
+
+    .stats-strip { grid-template-columns: 1fr 1fr; gap: 0; padding: 32px clamp(20px, 5vw, 60px); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 12px; }
+    .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
+    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    .companies-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 48px; }
+    .companies-header > p { text-align: left !important; max-width: 100% !important; }
+
+    .companies-grid { grid-template-columns: 1fr 1fr; }
+    .company-card.wide { grid-column: auto; min-height: 380px; }
+    .company-card.wide .company-name { font-size: clamp(22px, 3vw, 28px); }
+
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-image-wrap img { height: clamp(360px, 60vw, 520px); }
+    .about-image-accent { display: none; }
+
+    .services-grid { grid-template-columns: 1fr; background: transparent; gap: 12px; }
+    .service-card { padding: 40px clamp(24px, 5vw, 48px); border: 1px solid rgba(196,165,90,0.1); }
+
+    .mv-section { grid-template-columns: 1fr; }
+    .mv-panel:first-child { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+    .csr-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 48px; }
+    .csr-image { height: clamp(280px, 50vw, 460px); }
+
+    .values-grid { grid-template-columns: 1fr; gap: 48px; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 56px; margin-top: 48px; }
+
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  /* RESPONSIVE — PHONE ≤ 640px */
+  @media (max-width: 640px) {
+    .hero-tag { font-size: 9px; letter-spacing: 0.25em; }
+    .hero-tag::before { width: 28px; }
+    .hero-desc { margin-bottom: 36px; }
+    .btn-primary { padding: 14px 32px; }
+    .hero-actions { gap: 16px; }
+    .btn-primary, .btn-ghost { font-size: 10px; }
+
+    .companies-grid { grid-template-columns: 1fr; }
+    .company-card { min-height: 300px; }
+    .company-card.wide { min-height: 300px; }
+
+    .about-image-wrap img { height: clamp(300px, 70vw, 420px); }
+    .about-image-badge { bottom: 14px; left: 14px; padding: 14px 18px; gap: 10px; }
+    .about-image-badge .big { font-size: 30px; }
+    .about-pillars { grid-template-columns: 1fr; gap: 16px; }
+
+    .csr-activities { grid-template-columns: 1fr 1fr; }
+    .csr-act:nth-child(3) { grid-column: 1 / -1; }
+
+    .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
+    .footer-brand { grid-column: auto; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-legal { flex-wrap: wrap; justify-content: center; gap: 20px; }
+
+    .form-submit { width: 100%; justify-content: center; padding: 18px 24px; }
+
+    section { padding-block: clamp(64px, 14vw, 96px); }
+
+    .value-card { grid-template-columns: 44px 1fr; gap: 16px; }
+    .value-numeral { font-size: 22px; }
+  }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero-bg { transform: none !important; }
+    .reveal, .stat-item, .company-card { opacity: 1 !important; transform: none !important; }
+  }
 </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAVIGATION -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
+  <a href="#" class="nav-logo" aria-label="Royal Tycoon Group home">
     Royal Tycoon
     <span>Group of Companies</span>
   </a>
@@ -1167,7 +1406,35 @@
     <li><a href="#csr">CSR</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true" aria-label="Site menu">
+  <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <a href="#" class="drawer-logo" aria-label="Royal Tycoon Group home">
+    Royal Tycoon
+    <span>Group of Companies</span>
+  </a>
+  <ul class="drawer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#companies">Companies</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#csr">CSR</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="drawer-cta">Get in Touch</a>
+  <div class="drawer-footer">
+    <a href="tel:+97143463003">+971 4 346 3003</a>
+    <a href="mailto:info@royaltycoongroup.com">info@royaltycoongroup.com</a>
+  </div>
+</aside>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -1218,7 +1485,7 @@
   <div class="companies-header reveal">
     <div>
       <div class="section-tag">Our Portfolio</div>
-      <h2 class="section-title">Twelve Pillars of<br><em>Our Empire</em></h2>
+      <h2 class="section-title">Our Twelve<br><em>Companies</em></h2>
     </div>
     <p style="font-size:15px;font-weight:300;color:var(--white-dim);max-width:360px;line-height:1.8;text-align:right">Each company operates with its own identity while benefiting from our shared resources and strategic vision.</p>
   </div>
@@ -1255,7 +1522,7 @@
         <div class="company-num">03</div>
         <div class="company-name">Real Estate &amp; Developers</div>
         <div class="company-desc">Exceptional properties and development projects built for the future.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Discover ↗</a>
       </div>
     </div>
 
@@ -1277,7 +1544,7 @@
         <div class="company-num">05</div>
         <div class="company-name">Businessman Services</div>
         <div class="company-desc">Comprehensive business support for entrepreneurs and corporations.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Engage ↗</a>
       </div>
     </div>
 
@@ -1289,7 +1556,7 @@
         <div class="company-num">06</div>
         <div class="company-name">Government Services</div>
         <div class="company-desc">Navigating regulatory landscapes with precision and expertise.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Enquire ↗</a>
       </div>
     </div>
 
@@ -1312,7 +1579,7 @@
         <div class="company-num">08</div>
         <div class="company-name">Luxury Limousine</div>
         <div class="company-desc">Premium chauffeur services for distinguished executives and events.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Reserve ↗</a>
       </div>
     </div>
 
@@ -1323,7 +1590,7 @@
         <div class="company-num">09</div>
         <div class="company-name">Auto Industrial</div>
         <div class="company-desc">Automotive solutions engineered for industrial and commercial scale.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Enquire ↗</a>
       </div>
     </div>
 
@@ -1357,7 +1624,7 @@
         <div class="company-num">12</div>
         <div class="company-name">Metal Trading</div>
         <div class="company-desc">Quality metal solutions blending industrial craftsmanship with global reach.</div>
-        <a href="#contact" class="card-link">Explore ↗</a>
+        <a href="#contact" class="card-link">Discover ↗</a>
       </div>
     </div>
 
@@ -1368,7 +1635,7 @@
 <section class="about-section" id="about">
   <div class="about-grid">
     <div class="about-image-wrap reveal">
-      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90" alt="Royal Tycoon Group — Dubai skyline office">
+      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90" alt="Royal Tycoon Group — Dubai skyline office" loading="lazy" decoding="async">
       <div class="about-image-accent"></div>
       <div class="about-image-badge">
         <span class="big">25</span>
@@ -1380,7 +1647,7 @@
       <h2 class="section-title">A Legacy of<br><em>Diversified</em><br>Excellence</h2>
       <span class="gold-line"></span>
       <p class="about-text">
-        <strong>RoyaltyCoon Group of Companies</strong> is a Dubai-based limited liability conglomerate that encompasses a diverse range of businesses across twelve distinct industries. This structure allows for flexibility and protection of personal assets while enabling each subsidiary to operate under a unified brand.
+        <strong>Royal Tycoon Group of Companies</strong> is a Dubai-based limited liability conglomerate that encompasses a diverse range of businesses across twelve distinct industries. This structure allows for flexibility and protection of personal assets while enabling each subsidiary to operate under a unified brand.
       </p>
       <blockquote class="about-quote">
         "Empowering communities through sustainable practices, we commit to making a positive impact beyond our business."
@@ -1478,18 +1745,24 @@
   </div>
   <div class="csr-grid">
     <div class="reveal">
-      <img class="csr-image" src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=90" alt="CSR activities — community empowerment">
+      <img class="csr-image" src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=90" alt="CSR activities — community empowerment" loading="lazy" decoding="async">
       <div class="csr-activities">
         <div class="csr-act">
-          <span class="csr-act-icon">🏥</span>
+          <span class="csr-act-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-7-4.5-7-10a5 5 0 019-3 5 5 0 019 3c0 5.5-7 10-7 10z" opacity=".25"/><path d="M12 8v6M9 11h6"/><rect x="4" y="4" width="16" height="16" rx="1"/></svg>
+          </span>
           <div class="csr-act-name">Hospitals</div>
         </div>
         <div class="csr-act">
-          <span class="csr-act-icon">⚽</span>
+          <span class="csr-act-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/></svg>
+          </span>
           <div class="csr-act-name">Sports</div>
         </div>
         <div class="csr-act">
-          <span class="csr-act-icon">🤝</span>
+          <span class="csr-act-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 20.5s-6-3.6-6-9A4 4 0 0112 8a4 4 0 016 3.5c0 5.4-6 9-6 9z"/></svg>
+          </span>
           <div class="csr-act-name">NGOs</div>
         </div>
       </div>
@@ -1511,46 +1784,36 @@
     <h2 class="section-title">Core<br><em>Values</em></h2>
   </div>
   <div class="values-grid">
-    <div class="value-bars">
-      <div class="value-item">
-        <div class="value-head">
-          <span class="value-name">Excellence</span>
-          <span class="value-pct">80%</span>
-        </div>
-        <div class="value-track"><div class="value-fill" data-width="80"></div></div>
+    <div class="value-cards">
+      <div class="value-card reveal">
+        <span class="value-numeral">I</span>
+        <h3 class="value-name">Excellence</h3>
+        <p class="value-desc">An uncompromising standard in every project, partnership, and product we deliver.</p>
       </div>
-      <div class="value-item">
-        <div class="value-head">
-          <span class="value-name">Integrity</span>
-          <span class="value-pct">75%</span>
-        </div>
-        <div class="value-track"><div class="value-fill" data-width="75"></div></div>
+      <div class="value-card reveal">
+        <span class="value-numeral">II</span>
+        <h3 class="value-name">Integrity</h3>
+        <p class="value-desc">Honesty and transparency as the foundation of every relationship we build.</p>
       </div>
-      <div class="value-item">
-        <div class="value-head">
-          <span class="value-name">Safety</span>
-          <span class="value-pct">99%</span>
-        </div>
-        <div class="value-track"><div class="value-fill" data-width="99"></div></div>
+      <div class="value-card reveal">
+        <span class="value-numeral">III</span>
+        <h3 class="value-name">Safety</h3>
+        <p class="value-desc">The wellbeing of our people, partners, and communities above all else.</p>
       </div>
-      <div class="value-item">
-        <div class="value-head">
-          <span class="value-name">Innovation</span>
-          <span class="value-pct">85%</span>
-        </div>
-        <div class="value-track"><div class="value-fill" data-width="85"></div></div>
+      <div class="value-card reveal">
+        <span class="value-numeral">IV</span>
+        <h3 class="value-name">Innovation</h3>
+        <p class="value-desc">Forward-thinking solutions that meet the demands of an evolving world.</p>
       </div>
-      <div class="value-item">
-        <div class="value-head">
-          <span class="value-name">Trust</span>
-          <span class="value-pct">100%</span>
-        </div>
-        <div class="value-track"><div class="value-fill" data-width="100"></div></div>
+      <div class="value-card reveal">
+        <span class="value-numeral">V</span>
+        <h3 class="value-name">Trust</h3>
+        <p class="value-desc">Earned over twenty-five years and reaffirmed in every interaction.</p>
       </div>
     </div>
     <div class="values-quote reveal">
       <p class="values-quote-text">"Our core values guide our operations and drive our success — from integrity in every interaction to innovation that meets the demands of a changing world."</p>
-      <div class="values-quote-author">— RoyaltyCoon Group of Companies</div>
+      <div class="values-quote-author">— Royal Tycoon Group of Companies</div>
     </div>
   </div>
 </section>
@@ -1594,28 +1857,29 @@
         </div>
       </div>
     </div>
-    <div class="contact-form reveal">
+    <form class="contact-form reveal" id="contactForm" novalidate>
       <div class="form-row">
-        <label>Full Name</label>
-        <input type="text" placeholder="Your full name">
+        <label for="cf-name">Full Name</label>
+        <input id="cf-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required>
       </div>
       <div class="form-row">
-        <label>Email Address</label>
-        <input type="email" placeholder="your@email.com">
+        <label for="cf-email">Email Address</label>
+        <input id="cf-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required>
       </div>
       <div class="form-row">
-        <label>Subject</label>
-        <input type="text" placeholder="How can we help you?">
+        <label for="cf-subject">Subject</label>
+        <input id="cf-subject" name="subject" type="text" placeholder="How can we help you?" required>
       </div>
       <div class="form-row">
-        <label>Message</label>
-        <textarea placeholder="Tell us about your project or enquiry..."></textarea>
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Tell us about your project or enquiry..." required></textarea>
       </div>
-      <button class="form-submit">
+      <button class="form-submit" type="submit">
         Send Message
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
-    </div>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -1627,9 +1891,9 @@
       <div class="footer-logo-sub">Group of Companies</div>
       <p class="footer-tagline">A diversified conglomerate delivering excellence across twelve industries from the heart of Dubai.</p>
       <div class="footer-socials">
-        <a href="https://www.facebook.com/profile.php?id=61567199948620" class="footer-social" title="Facebook">f</a>
-        <a href="https://www.instagram.com/royal_tycoon_goc/" class="footer-social" title="Instagram">in</a>
-        <a href="https://www.linkedin.com/company/royal-tycoon-group-of-companies/" class="footer-social" title="LinkedIn">li</a>
+        <a href="https://www.facebook.com/profile.php?id=61567199948620" class="footer-social" title="Facebook" aria-label="Facebook" rel="noopener" target="_blank">f</a>
+        <a href="https://www.instagram.com/royal_tycoon_goc/" class="footer-social" title="Instagram" aria-label="Instagram" rel="noopener" target="_blank">ig</a>
+        <a href="https://www.linkedin.com/company/royal-tycoon-group-of-companies/" class="footer-social" title="LinkedIn" aria-label="LinkedIn" rel="noopener" target="_blank">li</a>
       </div>
     </div>
     <div>
@@ -1665,7 +1929,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">&copy; 2024 <span>Royal Tycoon Group of Companies</span>. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 <span>Royal Tycoon Group of Companies</span>. All rights reserved.</div>
     <div class="footer-legal">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
@@ -1675,57 +1939,81 @@
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-  });
-  function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-  document.querySelectorAll('a, button, .company-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '16px'; cursor.style.height = '16px';
-      ring.style.width = '56px'; ring.style.height = '56px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '8px'; cursor.style.height = '8px';
-      ring.style.width = '36px'; ring.style.height = '36px';
-    });
-  });
-
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Parallax hero
+  // Mobile drawer
+  const navToggle = document.getElementById('navToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const drawerClose = document.getElementById('drawerClose');
+
+  function openDrawer() {
+    document.body.classList.add('nav-open');
+    drawer.classList.add('visible');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.hidden = false;
+    requestAnimationFrame(() => backdrop.classList.add('visible'));
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Close menu');
+  }
+  function closeDrawer() {
+    document.body.classList.remove('nav-open');
+    drawer.classList.remove('visible');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('visible');
+    setTimeout(() => { backdrop.hidden = true; }, 300);
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open menu');
+  }
+  navToggle.addEventListener('click', () => {
+    document.body.classList.contains('nav-open') ? closeDrawer() : openDrawer();
+  });
+  drawerClose.addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) closeDrawer();
+  });
+
+  // Parallax hero (skip if reduced motion)
   const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
-  }, { passive: true });
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroBg && !reduceMotion) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
+    }, { passive: true });
+  }
+
+  // Contact form
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        formStatus.textContent = 'Please complete every field.';
+        formStatus.classList.add('visible');
+        return;
+      }
+      formStatus.textContent = 'Thank you — your message has been received. We will be in touch shortly.';
+      formStatus.classList.add('visible');
+      contactForm.reset();
+    });
+  }
 
   // Intersection Observer for reveals
-  const revealEls = document.querySelectorAll('.reveal, .stat-item, .company-card, .value-item');
+  const revealEls = document.querySelectorAll('.reveal, .stat-item, .company-card');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const el = entry.target;
         const delay = el.dataset.delay || 0;
         setTimeout(() => el.classList.add('visible'), delay);
-        // Value bars
-        el.querySelectorAll('.value-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
         observer.unobserve(el);
       }
     });
@@ -1733,24 +2021,8 @@
 
   revealEls.forEach((el, i) => {
     if (el.classList.contains('company-card')) el.dataset.delay = (i % 4) * 80;
-    if (el.classList.contains('value-item')) el.dataset.delay = i * 100;
     if (el.classList.contains('stat-item')) el.dataset.delay = i * 120;
     observer.observe(el);
-  });
-
-  // Value bars own observer
-  document.querySelectorAll('.value-item').forEach(item => {
-    const obs2 = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.value-fill').forEach(bar => {
-            setTimeout(() => bar.style.width = bar.dataset.width + '%', 300);
-          });
-          obs2.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    obs2.observe(item);
   });
 
   // Number counter animation
