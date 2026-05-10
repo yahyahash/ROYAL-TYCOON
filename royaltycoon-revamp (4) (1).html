@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Tycoon Group — Multi-Industry Excellence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #b08d3e;
+    --gold-light: #c9a555;
+    --gold-dim: rgba(176,141,62,0.12);
+    --black: #ffffff;
+    --black-2: #f7f4ef;
+    --black-3: #f0ece4;
+    --black-4: #e8e3d8;
+    --white: #1a1610;
+    --white-dim: rgba(26,22,16,0.58);
+    --white-faint: rgba(26,22,16,0.06);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #ffffff;
+    color: #1a1610;
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(176,141,62,0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.35s ease, height 0.35s ease, transform 0.08s ease;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    padding: 18px 60px;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(176,141,62,0.15);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #1a1610;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .nav-logo span {
+    font-size: 10px;
+    font-family: var(--sans);
+    font-weight: 200;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(26,22,16,0.55);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: #1a1610; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(176,141,62,0.45);
+    padding: 10px 28px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .nav-cta:hover {
+    background: var(--gold);
+    color: #ffffff;
+    border-color: var(--gold);
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90');
+    background-size: cover;
+    background-position: center 40%;
+    transform: scale(1.08);
+    transition: transform 0.1s linear;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(8,8,8,1) 0%,
+      rgba(8,8,8,0.6) 40%,
+      rgba(8,8,8,0.2) 70%,
+      rgba(8,8,8,0.05) 100%
+    );
+  }
+  .hero-overlay-side {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(8,8,8,0.5) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+  .hero-tag {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s 0.2s forwards;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: #f5f0e8;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-desc {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.7);
+    max-width: 500px;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s 1s forwards;
+  }
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    text-decoration: none;
+    padding: 16px 44px;
+    display: inline-block;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.7);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+  }
+  .btn-ghost::after {
+    content: '→';
+    font-size: 16px;
+    transition: transform 0.3s;
+  }
+  .btn-ghost:hover { color: #f5f0e8; }
+  .btn-ghost:hover::after { transform: translateX(6px); }
+
+  /* HERO SCROLL INDICATOR */
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px; right: 60px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s forwards;
+  }
+  .scroll-text {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: #1a1610;
+    border-top: 1px solid rgba(176,141,62,0.2);
+    border-bottom: 1px solid rgba(176,141,62,0.2);
+    padding: 48px 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    text-align: center;
+    padding: 20px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item.visible { opacity: 1; transform: translateY(0); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-num sup {
+    font-size: 28px;
+    vertical-align: super;
+    font-weight: 300;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+  }
+
+  /* SECTION COMMON */
+  section {
+    padding: 120px 60px;
+  }
+  .section-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 36px; height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* COMPANIES */
+  .companies-section { background: var(--black-2); }
+  .companies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 72px;
+  }
+
+  /* NEW IMAGE CARD GRID */
+  .companies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  /* Dark image card */
+  .company-card {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .company-card.visible { opacity: 1; transform: translateY(0); }
+
+  /* Image background */
+  .card-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s ease;
+  }
+  .company-card:hover .card-img { transform: scale(1.06); }
+
+  /* Dark card overlay */
+  .company-card.dark-card .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6,6,6,0.92) 0%, rgba(6,6,6,0.55) 50%, rgba(6,6,6,0.15) 100%);
+    transition: background 0.4s;
+  }
+  .company-card.dark-card:hover .card-overlay {
+    background: linear-gradient(to top, rgba(6,6,6,0.96) 0%, rgba(6,6,6,0.65) 55%, rgba(6,6,6,0.2) 100%);
+  }
+
+  /* Light card overlay */
+  .company-card.light-card .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(245,240,228,0.97) 0%, rgba(245,240,228,0.75) 45%, rgba(245,240,228,0.1) 100%);
+    transition: background 0.4s;
+  }
+  .company-card.light-card:hover .card-overlay {
+    background: linear-gradient(to top, rgba(245,240,228,1) 0%, rgba(245,240,228,0.82) 50%, rgba(245,240,228,0.15) 100%);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 36px 40px 40px;
+  }
+
+  .company-num {
+    font-family: var(--serif);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+  .dark-card .company-num { color: rgba(196,165,90,0.6); }
+  .light-card .company-num { color: rgba(140,100,30,0.7); }
+
+  .company-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .dark-card .company-name { color: var(--white); }
+  .light-card .company-name { color: #1a1510; }
+
+  .company-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.3s;
+    opacity: 0;
+    margin-top: 0;
+  }
+  .dark-card .company-desc { color: rgba(248,245,239,0.7); }
+  .light-card .company-desc { color: rgba(30,20,8,0.65); }
+
+  .company-card:hover .company-desc {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 10px;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s, transform 0.3s, gap 0.3s;
+  }
+  .dark-card .card-link { color: var(--gold); }
+  .light-card .card-link { color: #8a6a20; }
+  .company-card:hover .card-link { opacity: 1; transform: translateY(0); }
+  .card-link:hover { gap: 14px; }
+
+  /* Gold border accent on hover */
+  .company-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.4s;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .company-card:hover::after { border-color: rgba(196,165,90,0.35); }
+
+  /* Wide card (spans 2 cols) */
+  .company-card.wide { grid-column: span 2; }
+  .company-card.wide .company-name { font-size: 36px; }
+  .company-card.wide { min-height: 420px; }
+
+  /* ABOUT */
+  .about-section { background: var(--black); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-wrap img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+  }
+  .about-image-accent {
+    position: absolute;
+    top: -24px; left: -24px;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(196,165,90,0.3);
+    z-index: -1;
+  }
+  .about-image-badge {
+    position: absolute;
+    bottom: -32px; right: -32px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .about-image-badge .big {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .about-image-badge .small {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+  .about-body {
+    padding-top: 20px;
+  }
+  .about-text {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--white-dim);
+    margin: 32px 0 48px;
+  }
+  .about-text strong {
+    color: var(--white);
+    font-weight: 400;
+  }
+  .about-quote {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.5;
+    padding-left: 28px;
+    border-left: 1px solid var(--gold);
+    margin-bottom: 48px;
+  }
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .pillar {
+    padding: 24px;
+    border: 1px solid rgba(196,165,90,0.12);
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: rgba(196,165,90,0.4); }
+  .pillar-title {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .pillar-text {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.7;
+  }
+
+  /* SERVICES */
+  .services-section { background: var(--black-3); }
+  .services-header { margin-bottom: 80px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,165,90,0.06);
+  }
+  .service-card {
+    background: var(--black-3);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-number {
+    font-family: var(--serif);
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(196,165,90,0.08);
+    position: absolute;
+    top: 20px; right: 28px;
+    line-height: 1;
+    transition: color 0.4s;
+  }
+  .service-card:hover .service-number { color: rgba(196,165,90,0.15); }
+  .service-icon-wrap {
+    width: 56px; height: 56px;
+    border: 1px solid rgba(196,165,90,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .service-card:hover .service-icon-wrap {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+  }
+  .service-icon-wrap svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; }
+  .service-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .service-body {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    margin-top: 32px;
+    transition: gap 0.3s;
+  }
+  .service-link:hover { gap: 16px; }
+
+  /* MISSION VISION */
+  .mv-section {
+    background: #1a1610;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .mv-panel {
+    padding: 120px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mv-panel:first-child {
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .mv-panel-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.5s;
+  }
+  .mv-panel:hover .mv-panel-bg { opacity: 0.07; }
+  .mv-icon {
+    font-family: var(--serif);
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(176,141,62,0.07);
+    position: absolute;
+    top: 40px; right: 40px;
+    line-height: 1;
+    font-style: italic;
+  }
+  .mv-tag {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .mv-title {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: #f5f0e8;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .mv-body {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.9;
+    max-width: 460px;
+  }
+  .mv-goal {
+    margin-top: 48px;
+    padding: 24px;
+    border: 1px solid rgba(176,141,62,0.2);
+    background: rgba(176,141,62,0.05);
+  }
+  .mv-goal-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .mv-goal-text {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: #f5f0e8;
+    line-height: 1.5;
+  }
+
+  /* CSR */
+  .csr-section { background: var(--black); }
+  .csr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 80px;
+  }
+  .csr-image {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+  }
+  .csr-activities {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-top: 32px;
+  }
+  .csr-act {
+    background: var(--black-3);
+    padding: 28px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(196,165,90,0.08);
+    transition: border-top-color 0.3s;
+  }
+  .csr-act:hover { border-top-color: var(--gold); }
+  .csr-act-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .csr-act-name {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+  }
+  .csr-text {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.9;
+    margin-top: 28px;
+  }
+  .csr-highlight {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.4;
+    margin-top: 40px;
+    padding-left: 24px;
+    border-left: 1px solid var(--gold);
+  }
+
+  /* VALUES */
+  .values-section { background: var(--black-3); }
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 72px;
+  }
+  .value-bars { }
+  .value-item {
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .value-item.visible { opacity: 1; transform: translateX(0); }
+  .value-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .value-name {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .value-pct {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--gold);
+  }
+  .value-track {
+    height: 1px;
+    background: rgba(248,245,239,0.08);
+    position: relative;
+  }
+  .value-fill {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    width: 0;
+    transition: width 1.5s ease;
+  }
+  .values-quote {
+    padding: 60px;
+    background: #1a1610;
+    border: 1px solid rgba(176,141,62,0.2);
+  }
+  .values-quote-text {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: #f5f0e8;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
+  .values-quote-author {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--black-2);
+    padding: 120px 60px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-top: 72px;
+  }
+  .contact-info-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(196,165,90,0.08);
+  }
+  .contact-info-item:first-child { border-top: 1px solid rgba(196,165,90,0.08); }
+  .contact-info-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(196,165,90,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-info-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; }
+  .contact-info-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .contact-info-value {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .contact-info-value a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .contact-info-value a:hover { color: var(--gold); }
+  .contact-form { }
+  .form-row { margin-bottom: 28px; }
+  .form-row label {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(26,22,16,0.18);
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: #1a1610;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-row input::placeholder,
+  .form-row textarea::placeholder { color: rgba(26,22,16,0.28); }
+  .form-row input:focus,
+  .form-row textarea:focus { border-color: var(--gold); }
+  .form-row textarea { height: 100px; }
+  .form-submit {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 18px 52px;
+    cursor: none;
+    transition: background 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #1a1610;
+    border-top: 1px solid rgba(176,141,62,0.15);
+    padding: 80px 60px 48px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: #f5f0e8;
+    margin-bottom: 8px;
+  }
+  .footer-logo-sub {
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.8;
+    max-width: 260px;
+    margin-bottom: 32px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 16px;
+  }
+  .footer-social {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(176,141,62,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgba(245,240,232,0.4);
+    font-size: 12px;
+    font-weight: 300;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+  .footer-social:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(176,141,62,0.08);
+  }
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer-links a {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+    letter-spacing: 0.03em;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    padding-top: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.05em;
+  }
+  .footer-copy span { color: var(--gold); }
+  .footer-legal {
+    display: flex;
+    gap: 32px;
+  }
+  .footer-legal a {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.25);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .footer-legal a:hover { color: rgba(245,240,232,0.5); }
+
+  /* KEYFRAMES */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Gold divider line */
+  .gold-line {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    Royal Tycoon
+    <span>Group of Companies</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#companies">Companies</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#csr">CSR</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-side"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Dubai, UAE &mdash; Established 1999</div>
+    <h1 class="hero-title">
+      Your Partner in<br>
+      <em>Multi-Industry</em><br>
+      Excellence
+    </h1>
+    <p class="hero-desc">A diversified conglomerate spanning 12 industries, delivering tailored solutions that drive efficiency, growth, and lasting value across the globe.</p>
+    <div class="hero-actions">
+      <a href="#companies" class="btn-primary">Explore Our Companies</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num"><span class="count" data-target="25">0</span><sup>+</sup></div>
+    <div class="stat-label">Years of Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="count" data-target="12">0</span></div>
+    <div class="stat-label">Subsidiary Companies</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="count" data-target="500">0</span><sup>+</sup></div>
+    <div class="stat-label">Clients Served</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="count" data-target="4">0</span></div>
+    <div class="stat-label">Countries of Operation</div>
+  </div>
+</div>
+
+<!-- COMPANIES -->
+<section class="companies-section" id="companies">
+  <div class="companies-header reveal">
+    <div>
+      <div class="section-tag">Our Portfolio</div>
+      <h2 class="section-title">Twelve Pillars of<br><em>Our Empire</em></h2>
+    </div>
+    <p style="font-size:15px;font-weight:300;color:var(--white-dim);max-width:360px;line-height:1.8;text-align:right">Each company operates with its own identity while benefiting from our shared resources and strategic vision.</p>
+  </div>
+  <div class="companies-grid">
+
+    <!-- Row 1: wide dark + narrow light -->
+    <div class="company-card dark-card wide">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">01</div>
+        <div class="company-name">General Trading</div>
+        <div class="company-desc">Global trading solutions delivering value and efficiency across international markets with integrity.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card light-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">02</div>
+        <div class="company-name">Travel &amp; Tourism</div>
+        <div class="company-desc">Premium travel experiences curated for the discerning global traveller.</div>
+        <a href="http://www.shareentravel.com" class="card-link">Visit Site ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 2: narrow dark + narrow light + narrow dark -->
+    <div class="company-card dark-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1460317442991-0ec209397118?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">03</div>
+        <div class="company-name">Real Estate &amp; Developers</div>
+        <div class="company-desc">Exceptional properties and development projects built for the future.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card light-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">04</div>
+        <div class="company-name">Financial Services</div>
+        <div class="company-desc">Strategic financial solutions that protect and grow your wealth globally.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card dark-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">05</div>
+        <div class="company-name">Businessman Services</div>
+        <div class="company-desc">Comprehensive business support for entrepreneurs and corporations.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 3: narrow light + wide dark -->
+    <div class="company-card light-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">06</div>
+        <div class="company-name">Government Services</div>
+        <div class="company-desc">Navigating regulatory landscapes with precision and expertise.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card dark-card wide">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&q=85');background-position:center 60%"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">07</div>
+        <div class="company-name">Hotels &amp; Resorts</div>
+        <div class="company-desc">Luxury hospitality experiences that redefine comfort and elegance across premier destinations.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 4: narrow light + narrow dark + narrow light -->
+    <div class="company-card light-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">08</div>
+        <div class="company-name">Luxury Limousine</div>
+        <div class="company-desc">Premium chauffeur services for distinguished executives and events.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card dark-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">09</div>
+        <div class="company-name">Auto Industrial</div>
+        <div class="company-desc">Automotive solutions engineered for industrial and commercial scale.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card light-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">10</div>
+        <div class="company-name">Water Treatment</div>
+        <div class="company-desc">Innovative filtration technology delivering clean water solutions for tomorrow.</div>
+        <a href="http://www.thecoolfilter.ae" class="card-link">Visit Site ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 5: wide light + narrow dark -->
+    <div class="company-card light-card wide">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1400&q=85');background-position:center 70%"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">11</div>
+        <div class="company-name">Delivery Services</div>
+        <div class="company-desc">Reliable, swift logistics connecting businesses and communities across the region with precision.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+    <div class="company-card dark-card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="company-num">12</div>
+        <div class="company-name">Metal Trading</div>
+        <div class="company-desc">Quality metal solutions blending industrial craftsmanship with global reach.</div>
+        <a href="#contact" class="card-link">Explore ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-image-wrap reveal">
+      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90" alt="Royal Tycoon Group — Dubai skyline office">
+      <div class="about-image-accent"></div>
+      <div class="about-image-badge">
+        <span class="big">25</span>
+        <span class="small">Years of Excellence</span>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <div class="section-tag">About Us</div>
+      <h2 class="section-title">A Legacy of<br><em>Diversified</em><br>Excellence</h2>
+      <span class="gold-line"></span>
+      <p class="about-text">
+        <strong>RoyaltyCoon Group of Companies</strong> is a Dubai-based limited liability conglomerate that encompasses a diverse range of businesses across twelve distinct industries. This structure allows for flexibility and protection of personal assets while enabling each subsidiary to operate under a unified brand.
+      </p>
+      <blockquote class="about-quote">
+        "Empowering communities through sustainable practices, we commit to making a positive impact beyond our business."
+      </blockquote>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-title">Our Approach</div>
+          <div class="pillar-text">Diversified strategy that mitigates risks and capitalises on different market opportunities.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Our Structure</div>
+          <div class="pillar-text">Each business maintains its own identity while benefiting from shared resources and expertise.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Our Base</div>
+          <div class="pillar-text">Headquartered in Ras Al Khor Industrial Area, Dubai — the heart of global commerce.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Our Reach</div>
+          <div class="pillar-text">Active operations across the UAE and expanding into new global markets by 2026.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header reveal">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Flagship<br><em>Services</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-number">01</div>
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="service-title">Properties LLC</h3>
+      <p class="service-body">Real estate experiences with exceptional properties and unmatched service. From luxury residences to commercial developments, we shape skylines across the UAE.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">02</div>
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3 class="service-title">Metal House LLC</h3>
+      <p class="service-body">Leading the way in innovative metal solutions, blending quality with craftsmanship. Our metal trading division serves industrial clients with precision and reliability.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">03</div>
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <h3 class="service-title">Trading LLC</h3>
+      <p class="service-body">Your trusted partner in global trading, delivering value and efficiency across markets. We connect suppliers and buyers with integrity and speed.</p>
+      <a href="#contact" class="service-link">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<div class="mv-section" id="mission">
+  <div class="mv-panel reveal">
+    <div class="mv-panel-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80')"></div>
+    <div class="mv-icon">M</div>
+    <div class="mv-tag">Our Mission</div>
+    <h2 class="mv-title">Driven by<br>Purpose</h2>
+    <p class="mv-body">To empower a diverse range of businesses through innovative solutions, strategic partnerships, and exceptional service. We are dedicated to understanding the unique challenges of each sector we serve, delivering tailored approaches that drive efficiency and growth.</p>
+    <div class="mv-goal">
+      <div class="mv-goal-label">Our Commitment</div>
+      <div class="mv-goal-text">Integrity, excellence, and sustainability — creating lasting value for every stakeholder.</div>
+    </div>
+  </div>
+  <div class="mv-panel reveal">
+    <div class="mv-panel-bg" style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80')"></div>
+    <div class="mv-icon">V</div>
+    <div class="mv-tag">Our Vision</div>
+    <h2 class="mv-title">Global<br>Leadership</h2>
+    <p class="mv-body">To be a global leader in multi-industry collaboration, recognised for our unwavering dedication to innovation, quality, and social responsibility. We aspire to foster an ecosystem where businesses thrive through shared knowledge.</p>
+    <div class="mv-goal">
+      <div class="mv-goal-label">By 2030</div>
+      <div class="mv-goal-text">Expand our global footprint to include emerging industries that reflect our commitment to future-forward thinking.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CSR -->
+<section class="csr-section" id="csr">
+  <div class="reveal">
+    <div class="section-tag">Giving Back</div>
+    <h2 class="section-title">Corporate Social<br><em>Responsibility</em></h2>
+  </div>
+  <div class="csr-grid">
+    <div class="reveal">
+      <img class="csr-image" src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=90" alt="CSR activities — community empowerment">
+      <div class="csr-activities">
+        <div class="csr-act">
+          <span class="csr-act-icon">🏥</span>
+          <div class="csr-act-name">Hospitals</div>
+        </div>
+        <div class="csr-act">
+          <span class="csr-act-icon">⚽</span>
+          <div class="csr-act-name">Sports</div>
+        </div>
+        <div class="csr-act">
+          <span class="csr-act-icon">🤝</span>
+          <div class="csr-act-name">NGOs</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="csr-text">We believe in empowering communities through sustainable practices, and we're dedicated to making a positive impact that goes beyond business. By working hand-in-hand with local groups, we aim to uplift economies and care for our environment.</p>
+      <p class="csr-text" style="margin-top:24px">Our focus is on education, conserving resources, and creating fair opportunities for everyone. Together, we can build a brighter future that benefits both people and the planet.</p>
+      <blockquote class="csr-highlight">
+        "Building a brighter future that benefits both people and the planet."
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="reveal">
+    <div class="section-tag">What We Stand For</div>
+    <h2 class="section-title">Core<br><em>Values</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-bars">
+      <div class="value-item">
+        <div class="value-head">
+          <span class="value-name">Excellence</span>
+          <span class="value-pct">80%</span>
+        </div>
+        <div class="value-track"><div class="value-fill" data-width="80"></div></div>
+      </div>
+      <div class="value-item">
+        <div class="value-head">
+          <span class="value-name">Integrity</span>
+          <span class="value-pct">75%</span>
+        </div>
+        <div class="value-track"><div class="value-fill" data-width="75"></div></div>
+      </div>
+      <div class="value-item">
+        <div class="value-head">
+          <span class="value-name">Safety</span>
+          <span class="value-pct">99%</span>
+        </div>
+        <div class="value-track"><div class="value-fill" data-width="99"></div></div>
+      </div>
+      <div class="value-item">
+        <div class="value-head">
+          <span class="value-name">Innovation</span>
+          <span class="value-pct">85%</span>
+        </div>
+        <div class="value-track"><div class="value-fill" data-width="85"></div></div>
+      </div>
+      <div class="value-item">
+        <div class="value-head">
+          <span class="value-name">Trust</span>
+          <span class="value-pct">100%</span>
+        </div>
+        <div class="value-track"><div class="value-fill" data-width="100"></div></div>
+      </div>
+    </div>
+    <div class="values-quote reveal">
+      <p class="values-quote-text">"Our core values guide our operations and drive our success — from integrity in every interaction to innovation that meets the demands of a changing world."</p>
+      <div class="values-quote-author">— RoyaltyCoon Group of Companies</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-tag">Reach Us</div>
+    <h2 class="section-title">Let's Build<br><em>Something</em> Together</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-info-item">
+        <div class="contact-info-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Address</div>
+          <div class="contact-info-value">Shop No 11, Ras Al Khor Industrial Area,<br>Dubai, United Arab Emirates</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.59 10.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.48 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Phone</div>
+          <div class="contact-info-value">
+            <a href="tel:+97143463003">+971 4 346 3003</a><br>
+            <a href="tel:+971547014877">+971 54 701 4877</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-value"><a href="mailto:info@royaltycoongroup.com">info@royaltycoongroup.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-row">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <label>Subject</label>
+        <input type="text" placeholder="How can we help you?">
+      </div>
+      <div class="form-row">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your project or enquiry..."></textarea>
+      </div>
+      <button class="form-submit">
+        Send Message
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Royal Tycoon</div>
+      <div class="footer-logo-sub">Group of Companies</div>
+      <p class="footer-tagline">A diversified conglomerate delivering excellence across twelve industries from the heart of Dubai.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/profile.php?id=61567199948620" class="footer-social" title="Facebook">f</a>
+        <a href="https://www.instagram.com/royal_tycoon_goc/" class="footer-social" title="Instagram">in</a>
+        <a href="https://www.linkedin.com/company/royal-tycoon-group-of-companies/" class="footer-social" title="LinkedIn">li</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Companies</div>
+      <ul class="footer-links">
+        <li><a href="#">General Trading</a></li>
+        <li><a href="https://thecoolfilter.ae">Water Treatment</a></li>
+        <li><a href="#">Financial Services</a></li>
+        <li><a href="#">Business Services</a></li>
+        <li><a href="https://shareentravel.com">Travel &amp; Tourism</a></li>
+        <li><a href="#">Government Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">More Companies</div>
+      <ul class="footer-links">
+        <li><a href="#">Metal Trading</a></li>
+        <li><a href="#">Auto Industrial</a></li>
+        <li><a href="#">Delivery Services</a></li>
+        <li><a href="#">Hotels &amp; Resorts</a></li>
+        <li><a href="#">Luxury Limousine</a></li>
+        <li><a href="#">Real Estate</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@royaltycoongroup.com">info@royaltycoongroup.com</a></li>
+        <li><a href="tel:+97143463003">+971 4 346 3003</a></li>
+        <li><a href="tel:+971547014877">+971 54 701 4877</a></li>
+        <li><a href="#">Ras Al Khor, Dubai, UAE</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2024 <span>Royal Tycoon Group of Companies</span>. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a, button, .company-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '16px'; cursor.style.height = '16px';
+      ring.style.width = '56px'; ring.style.height = '56px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '8px'; cursor.style.height = '8px';
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Parallax hero
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
+  }, { passive: true });
+
+  // Intersection Observer for reveals
+  const revealEls = document.querySelectorAll('.reveal, .stat-item, .company-card, .value-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        // Value bars
+        el.querySelectorAll('.value-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach((el, i) => {
+    if (el.classList.contains('company-card')) el.dataset.delay = (i % 4) * 80;
+    if (el.classList.contains('value-item')) el.dataset.delay = i * 100;
+    if (el.classList.contains('stat-item')) el.dataset.delay = i * 120;
+    observer.observe(el);
+  });
+
+  // Value bars own observer
+  document.querySelectorAll('.value-item').forEach(item => {
+    const obs2 = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.value-fill').forEach(bar => {
+            setTimeout(() => bar.style.width = bar.dataset.width + '%', 300);
+          });
+          obs2.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    obs2.observe(item);
+  });
+
+  // Number counter animation
+  function animateCount(el, target, duration = 1800) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { el.textContent = target; clearInterval(timer); }
+      else el.textContent = Math.floor(start);
+    }, 16);
+  }
+
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.count').forEach(el => {
+          animateCount(el, parseInt(el.dataset.target));
+        });
+        statsObs.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  const stripEl = document.querySelector('.stats-strip');
+  if (stripEl) statsObs.observe(stripEl);
+</script>
+</body>
+</html>
