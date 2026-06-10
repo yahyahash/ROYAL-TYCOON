@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>By Nawal — New Collection 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink:      #1C0A2E;
+  --jewel:    #6B2D82;
+  --jewel2:   #8B3FA8;
+  --gold:     #C8963A;
+  --gold-lt:  #E8B86D;
+  --white:    #ffffff;
+  --off:      #F9F7FA;
+  --mist:     #F3EDF8;
+  --border:   #E2D8EC;
+  --muted:    #8A7598;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* PAGE TOGGLE */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ─────────────────────────────────────
+   NAV — mobile first
+───────────────────────────────────── */
+.nav {
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+  height: 58px;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-decoration: none;
+}
+.nav-logo-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.nav-logo-sub {
+  font-size: 7.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  font-weight: 400;
+}
+
+/* desktop nav links — hidden on mobile */
+.nav-links {
+  display: none;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+
+.nav-right { display: flex; align-items: center; gap: 0.9rem; }
+.nav-icon-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.72);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  padding: 4px;
+}
+.nav-icon-btn:hover { color: var(--gold-lt); }
+
+/* hamburger */
+.hamburger {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+/* mobile drawer */
+.nav-drawer {
+  display: none;
+  flex-direction: column;
+  background: var(--ink);
+  position: absolute;
+  top: 58px;
+  left: 0;
+  right: 0;
+  z-index: 299;
+  padding: 0.5rem 0 1.5rem;
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  text-decoration: none;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 0.5px solid rgba(255,255,255,0.05);
+  transition: color 0.2s;
+}
+.nav-drawer a:hover { color: var(--gold-lt); }
+
+/* ─────────────────────────────────────
+   TICKER
+───────────────────────────────────── */
+.ticker {
+  background: var(--jewel);
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: tick 28s linear infinite;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+.ticker-inner span { margin: 0 2rem; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─────────────────────────────────────
+   HERO — mobile: stacked, desktop: split
+───────────────────────────────────── */
+.hero { display: flex; flex-direction: column; }
+
+.hero-img {
+  background: var(--ink);
+  overflow: hidden;
+  position: relative;
+  height: 56vw;
+  min-height: 260px;
+  max-height: 480px;
+}
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.88;
+}
+
+.hero-stamp {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 62px;
+  height: 62px;
+  border: 1px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.hero-stamp-label {
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.hero-text {
+  background: var(--white);
+  padding: 2.4rem 1.2rem 2.8rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-watermark {
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 130px;
+  color: rgba(107,45,130,0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-style: italic;
+}
+
+.hero-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--jewel);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.06;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.hero-title em { font-style: italic; color: var(--jewel); }
+.hero-desc {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  max-width: 380px;
+}
+.hero-cta { display: flex; flex-direction: column; gap: 0.75rem; }
+.hero-cta a { text-align: center; }
+
+/* ─────────────────────────────────────
+   BUTTONS
+───────────────────────────────────── */
+.btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  padding: 13px 28px;
+}
+.btn-jewel { background: var(--jewel); color: #fff; }
+.btn-jewel:hover { background: var(--jewel2); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--jewel); color: var(--jewel); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { background: var(--gold-lt); }
+.btn-white { background: #fff; color: var(--jewel); }
+.btn-white:hover { background: var(--gold); color: var(--ink); }
+.btn-full { display: block; width: 100%; text-align: center; }
+
+/* ─────────────────────────────────────
+   SECTIONS
+───────────────────────────────────── */
+.section     { padding: 3rem 1.2rem; background: var(--white); }
+.section-alt { padding: 3rem 1.2rem; background: var(--off); }
+
+.sec-hdr {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.sec-title em { font-style: italic; color: var(--jewel); }
+.view-all {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jewel);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--jewel);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────
+   PRODUCT GRID — 2 col mobile, 4 col desktop
+───────────────────────────────────── */
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.product-card { cursor: pointer; }
+.product-card-img {
+  position: relative;
+  overflow: hidden;
+  background: var(--mist);
+  aspect-ratio: 3 / 4;
+}
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s ease;
+}
+.product-card:hover .product-card-img img { transform: scale(1.06); }
+
+.badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  font-weight: 500;
+}
+.badge-new { background: var(--jewel); color: #fff; }
+.badge-hot { background: var(--gold); color: var(--ink); }
+
+.product-info { padding: 10px 0 0; }
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+.product-sub { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.product-price { font-size: 13px; color: var(--ink); font-family: 'Cormorant Garamond', serif; }
+.product-price s { color: #c0aed0; margin-right: 4px; }
+
+.product-quick {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px;
+  background: transparent;
+  border: 0.5px solid var(--border);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  opacity: 0;
+}
+.product-card:hover .product-quick { opacity: 1; }
+.product-quick:hover { background: var(--jewel); color: #fff; border-color: var(--jewel); }
+
+/* ─────────────────────────────────────
+   FEATURE STRIP
+───────────────────────────────────── */
+.feature-strip {
+  background: var(--ink);
+  padding: 2.5rem 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.feature-item {
+  text-align: center;
+  padding: 1.4rem 0.8rem;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+.feature-item:nth-child(odd) { border-right: 0.5px solid rgba(255,255,255,0.06); }
+.feature-icon { font-size: 26px; color: var(--gold); margin-bottom: 0.6rem; }
+.feature-title {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.feature-desc { font-size: 11.5px; color: rgba(255,255,255,0.38); line-height: 1.55; }
+
+/* ─────────────────────────────────────
+   EDITORIAL SPLIT — stacked mobile, side-by-side desktop
+───────────────────────────────────── */
+.editorial { display: flex; flex-direction: column; }
+.editorial-img {
+  overflow: hidden;
+  background: var(--mist);
+  height: 60vw;
+  min-height: 240px;
+  max-height: 500px;
+}
+.editorial-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.editorial-text {
+  background: var(--jewel);
+  padding: 2.8rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.editorial-bg {
+  position: absolute;
+  right: -1rem;
+  bottom: -2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 160px;
+  color: rgba(0,0,0,0.07);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-style: italic;
+}
+.editorial-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.editorial-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.18;
+  margin-bottom: 1.2rem;
+}
+.editorial-title em { font-style: italic; color: var(--gold-lt); }
+.editorial-body {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* ─────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────── */
+.testimonials {
+  padding: 3rem 1.2rem;
+  background: var(--white);
+  border-top: 0.5px solid var(--border);
+}
+.test-eyebrow {
+  text-align: center;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--jewel);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.test-grid { display: flex; flex-direction: column; gap: 1rem; }
+.test-card {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  padding: 1.6rem 1.4rem;
+}
+.test-stars { color: var(--gold); font-size: 12px; margin-bottom: 0.8rem; letter-spacing: 3px; }
+.test-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--ink);
+  font-style: italic;
+  margin-bottom: 0.9rem;
+}
+.test-author {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─────────────────────────────────────
+   NEWSLETTER
+───────────────────────────────────── */
+.newsletter {
+  padding: 3.5rem 1.2rem;
+  background: var(--off);
+  text-align: center;
+  border-top: 0.5px solid var(--border);
+}
+.nl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.nl-sub { font-size: 13px; color: var(--muted); margin-bottom: 1.8rem; font-weight: 300; }
+.nl-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 420px; margin: 0 auto; }
+.nl-form input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 0.5px solid var(--border);
+  background: #fff;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  outline: none;
+}
+.nl-form input:focus { border-color: var(--jewel); }
+.nl-form button {
+  padding: 13px 24px;
+  background: var(--jewel);
+  color: #fff;
+  border: none;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.nl-form button:hover { background: var(--jewel2); }
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 3rem 1.2rem 1.5rem;
+}
+.footer-brand { margin-bottom: 2rem; }
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.footer-brand-tagline {
+  font-size: 7.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+.footer-desc {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.34);
+  font-weight: 300;
+  max-width: 280px;
+}
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem 1rem;
+  margin-bottom: 2.5rem;
+}
+.footer-col-title {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.55rem; }
+.footer-links a {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.38);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.88); }
+.footer-bottom {
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+  padding-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
+.footer-social { display: flex; gap: 1.2rem; }
+.footer-social a {
+  font-size: 19px;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.footer-social a:hover { color: var(--gold); }
+
+/* ─────────────────────────────────────
+   PRODUCT PAGE
+───────────────────────────────────── */
+.pd-crumb {
+  padding: 1rem 1.2rem;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+}
+.pd-crumb span { color: var(--ink); }
+.back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: color 0.2s;
+}
+.back-btn:hover { color: var(--jewel); }
+
+/* product layout — stacked on mobile */
+.pd-layout { display: flex; flex-direction: column; background: var(--white); }
+
+.pd-gallery { padding: 1.2rem; }
+.pd-main {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--mist);
+  overflow: hidden;
+  margin-bottom: 0.7rem;
+}
+.pd-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pd-thumbs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 4px; }
+.pd-thumb {
+  width: 64px;
+  height: 80px;
+  background: var(--mist);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+.pd-thumb.active { border-color: var(--jewel); }
+.pd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pd-info {
+  padding: 1.6rem 1.2rem 2.5rem;
+  border-top: 0.5px solid var(--border);
+}
+.pd-cat {
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--jewel);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+.pd-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.pd-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
+}
+.pd-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: var(--ink);
+}
+.pd-price-old {
+  font-size: 16px;
+  color: #c0aed0;
+  text-decoration: line-through;
+  font-family: 'Cormorant Garamond', serif;
+}
+.pd-divider { border: none; border-top: 0.5px solid var(--border); margin: 1.2rem 0; }
+.pd-label {
+  font-size: 9.5px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+.pd-label span { font-style: italic; color: var(--ink); text-transform: none; letter-spacing: 0; }
+
+.swatches { display: flex; gap: 0.6rem; margin-bottom: 1.4rem; }
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.swatch.active { border-color: var(--jewel); outline-color: var(--jewel); }
+
+.sizes { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+.size-btn {
+  min-width: 48px;
+  height: 48px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--border);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  background: transparent;
+  transition: all 0.2s;
+}
+.size-btn:hover, .size-btn.active { background: var(--jewel); color: #fff; border-color: var(--jewel); }
+
+.pd-add {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: var(--jewel);
+  color: #fff;
+  border: none;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s;
+  margin-bottom: 0.7rem;
+}
+.pd-add:hover { background: var(--jewel2); }
+.pd-wish {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: var(--ink);
+  border: 0.5px solid var(--border);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  margin-bottom: 1.6rem;
+}
+.pd-wish:hover { border-color: var(--jewel); color: var(--jewel); }
+
+.pd-perks { list-style: none; }
+.pd-perks li {
+  font-size: 12.5px;
+  color: var(--muted);
+  padding: 8px 0;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 300;
+}
+.pd-perks li i { color: var(--jewel); font-size: 15px; flex-shrink: 0; }
+
+/* accordion */
+.accordion { border-top: 0.5px solid var(--border); margin-top: 1.6rem; }
+.acc-item { border-bottom: 0.5px solid var(--border); }
+.acc-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  cursor: pointer;
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  user-select: none;
+  transition: color 0.2s;
+}
+.acc-hdr:hover { color: var(--jewel); }
+.acc-body {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted);
+  padding: 0 0 1.2rem;
+  display: none;
+  font-weight: 300;
+}
+.acc-body.open { display: block; }
+
+/* ─────────────────────────────────────
+   TABLET: 600px+
+───────────────────────────────────── */
+@media (min-width: 600px) {
+  .nav { padding: 0 2rem; height: 62px; }
+  .nav-drawer { top: 62px; }
+  .hero-img { height: 44vw; max-height: 520px; }
+  .hero-text { padding: 3rem 2rem 3.5rem; }
+  .hero-title { font-size: 52px; }
+  .hero-cta { flex-direction: row; }
+  .hero-cta a { text-align: left; }
+  .section, .section-alt { padding: 4rem 2rem; }
+  .editorial-img { height: 46vw; max-height: 420px; }
+  .editorial-text { padding: 3rem 2rem; }
+  .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .nl-form { flex-direction: row; gap: 0; }
+  .nl-form input { flex: 1; }
+  .footer-cols { grid-template-columns: repeat(3,1fr); }
+  .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+  .feature-strip { grid-template-columns: repeat(4,1fr); }
+  .feature-item { border-bottom: none; }
+  .feature-item:nth-child(odd) { border-right: none; }
+  .feature-item:not(:last-child) { border-right: 0.5px solid rgba(255,255,255,0.06); }
+  .pd-gallery { padding: 2rem; }
+  .pd-info { padding: 2rem; }
+}
+
+/* ─────────────────────────────────────
+   DESKTOP: 960px+
+───────────────────────────────────── */
+@media (min-width: 960px) {
+  .nav { padding: 0 3rem; height: 66px; }
+  .nav-drawer { top: 66px; }
+  .nav-links { display: flex; }
+  .hamburger { display: none; }
+
+  .hero {
+    flex-direction: row;
+    min-height: 88vh;
+  }
+  .hero-img {
+    flex: 1;
+    height: auto;
+    max-height: none;
+  }
+  .hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4.5rem 4rem;
+  }
+  .hero-watermark { font-size: 180px; }
+  .hero-title { font-size: 58px; }
+  .hero-stamp { width: 72px; height: 72px; top: 2rem; left: 2rem; }
+
+  .grid-products { grid-template-columns: repeat(4,1fr); gap: 1.6rem; }
+
+  .section, .section-alt { padding: 5.5rem 3rem; }
+
+  .editorial {
+    flex-direction: row;
+    min-height: 560px;
+  }
+  .editorial-img { flex: 1.25; height: auto; max-height: none; }
+  .editorial-text {
+    flex: 0.75;
+    padding: 4.5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .editorial-title { font-size: 38px; }
+  .editorial-bg { font-size: 220px; }
+
+  .testimonials, .newsletter { padding: 5.5rem 3rem; }
+
+  .footer-cols { grid-template-columns: repeat(4,1fr); }
+  footer { padding: 4rem 3rem 2rem; }
+  .footer-brand { margin-bottom: 0; }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    align-items: start;
+  }
+  .footer-cols { display: contents; }
+
+  .pd-layout { flex-direction: row; min-height: 78vh; }
+  .pd-gallery { flex: 1.1; padding: 2.5rem 2rem 2.5rem 3rem; border-top: none; }
+  .pd-info { flex: 0.9; padding: 3rem; border-top: none; border-left: 0.5px solid var(--border); }
+  .pd-crumb { padding: 1.2rem 3rem; }
+  .pd-name { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-main">By Nawal</span>
+      <span class="nav-logo-sub">Artisan Bags &amp; Accessories</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">New In</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Bags</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Our Story</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" aria-label="Search"><i class="ti ti-search"></i></button>
+      <button class="nav-icon-btn" aria-label="Wishlist"><i class="ti ti-heart"></i></button>
+      <button class="nav-icon-btn" aria-label="Cart"><i class="ti ti-shopping-bag"></i></button>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()"><i class="ti ti-menu-2"></i></button>
+    </div>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="#">New In</a>
+      <a href="#">Collections</a>
+      <a href="#">Bags</a>
+      <a href="#">Accessories</a>
+      <a href="#">Our Story</a>
+    </div>
+  </nav>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-inner">
+      <span>New Collection 2026</span><span>·</span>
+      <span>Limited editions</span><span>·</span>
+      <span>Full-grain leather</span><span>·</span>
+      <span>Free shipping over $150</span><span>·</span>
+      <span>By Nawal — 2026</span><span>·</span>
+      <span>New Collection 2026</span><span>·</span>
+      <span>Limited editions</span><span>·</span>
+      <span>Full-grain leather</span><span>·</span>
+      <span>Free shipping over $150</span><span>·</span>
+      <span>By Nawal — 2026</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img">
+      <img src="https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346" alt="By Nawal campaign" />
+      <div class="hero-stamp">
+        <span class="hero-stamp-label">New<br>2026</span>
+      </div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-watermark" aria-hidden="true">N</div>
+      <p class="hero-eyebrow">New Collection — 2026</p>
+      <h1 class="hero-title">A new year.<br><em>A new shape.</em></h1>
+      <p class="hero-desc">The 2026 collection strips everything back — cleaner silhouettes, deeper textures, the same hands that made them. This is what craft looks like when it evolves.</p>
+      <div class="hero-cta">
+        <a class="btn btn-jewel" onclick="showProduct()" href="#">Shop 2026 Collection</a>
+        <a class="btn btn-outline" href="#">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW IN -->
+  <section class="section">
+    <div class="sec-hdr">
+      <h2 class="sec-title">2026 <em>Drops</em></h2>
+      <a class="view-all" href="#">View all</a>
+    </div>
+    <div class="grid-products">
+
+      <div class="product-card" onclick="showProduct()">
+        <div class="product-card-img">
+          <img src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346" alt="The Nawal Tote 26" />
+          <span class="badge badge-new">New 2026</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">The Nawal Tote '26</p>
+          <p class="product-sub">Structured full-grain leather</p>
+          <p class="product-price"><strong>$295</strong></p>
+        </div>
+        <button class="product-quick">Quick View</button>
+      </div>
+
+      <div class="product-card" onclick="showProduct()">
+        <div class="product-card-img">
+          <img src="https://amalayub.com/cdn/shop/files/9504B132-80DB-4728-B5CA-1D61019F2277.jpg?v=1771873613&width=1346" alt="The Dusk Bucket" />
+          <span class="badge badge-hot">Selling Fast</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">The Dusk Bucket</p>
+          <p class="product-sub">Burnished vegetable tan</p>
+          <p class="product-price"><strong>$265</strong></p>
+        </div>
+        <button class="product-quick">Quick View</button>
+      </div>
+
+      <div class="product-card" onclick="showProduct()">
+        <div class="product-card-img">
+          <img src="https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346" alt="Mini Arc Bag" />
+          <span class="badge badge-new">New 2026</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Mini Arc Bag</p>
+          <p class="product-sub">Crossbody — 4 colours</p>
+          <p class="product-price"><strong>$210</strong></p>
+        </div>
+        <button class="product-quick">Quick View</button>
+      </div>
+
+      <div class="product-card" onclick="showProduct()">
+        <div class="product-card-img">
+          <img src="https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346" alt="The Evening Frame" />
+        </div>
+        <div class="product-info">
+          <p class="product-name">The Evening Frame</p>
+          <p class="product-sub">Hard-frame clutch</p>
+          <p class="product-price"><strong>$175</strong></p>
+        </div>
+        <button class="product-quick">Quick View</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <div class="feature-strip">
+    <div class="feature-item">
+      <div class="feature-icon"><i class="ti ti-package"></i></div>
+      <p class="feature-title">Free Shipping</p>
+      <p class="feature-desc">On orders over $150</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="ti ti-award"></i></div>
+      <p class="feature-title">Artisan-Made</p>
+      <p class="feature-desc">Hand-stitched every piece</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="ti ti-refresh"></i></div>
+      <p class="feature-title">30-Day Returns</p>
+      <p class="feature-desc">Hassle-free, no questions</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="ti ti-lock"></i></div>
+      <p class="feature-title">Secure Checkout</p>
+      <p class="feature-desc">All major cards accepted</p>
+    </div>
+  </div>
+
+  <!-- EDITORIAL SPLIT -->
+  <div class="editorial">
+    <div class="editorial-img">
+      <img src="https://amalayub.com/cdn/shop/files/9504B132-80DB-4728-B5CA-1D61019F2277.jpg?v=1771873613&width=1346" alt="The By Nawal story" />
+    </div>
+    <div class="editorial-text">
+      <div class="editorial-bg" aria-hidden="true">N</div>
+      <p class="editorial-eyebrow">The 2026 Edit</p>
+      <h2 class="editorial-title">Less noise.<br>More <em>intention.</em></h2>
+      <p class="editorial-body">The 2026 collection is our most considered yet. Fewer pieces, tighter forms, leather that gets better with every year you carry it. We made less so you could choose better.</p>
+      <a class="btn btn-white" href="#">See the full 2026 edit</a>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <p class="test-eyebrow">What our customers say — 2026 Collection</p>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="test-stars">★★★★★</p>
+        <p class="test-quote">"The 2026 pieces are even better than last year. The Arc Bag is the most elegant thing I own."</p>
+        <p class="test-author">— Yasmine K.</p>
+      </div>
+      <div class="test-card">
+        <p class="test-stars">★★★★★</p>
+        <p class="test-quote">"Cleaner, stronger, more refined. You can feel this collection was made with real intention behind every cut."</p>
+        <p class="test-author">— Sara M.</p>
+      </div>
+      <div class="test-card">
+        <p class="test-stars">★★★★★</p>
+        <p class="test-quote">"I pre-ordered the Nawal Tote '26 and it arrived better than the photos. The leather is extraordinary."</p>
+        <p class="test-author">— Nadia H.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <h2 class="nl-title">Get early access to 2026</h2>
+    <p class="nl-sub">Be first to know when new 2026 pieces drop — limited runs sell out fast.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="your@email.com" />
+      <button type="button">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-brand-name">By Nawal</p>
+        <span class="footer-brand-tagline">Artisan Bags &amp; Accessories</span>
+        <p class="footer-desc">Artisan bags and accessories rooted in heritage craftsmanship, designed for the modern woman.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <p class="footer-col-title">Shop</p>
+          <ul class="footer-links">
+            <li><a href="#">New In</a></li>
+            <li><a href="#">Totes</a></li>
+            <li><a href="#">Crossbodies</a></li>
+            <li><a href="#">Clutches</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Help</p>
+          <ul class="footer-links">
+            <li><a href="#">Sizing Guide</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Care Guide</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Brand</p>
+          <ul class="footer-links">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">The Craft</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Stockists</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 By Nawal. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="ti ti-brand-pinterest"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- end page-home -->
+
+
+<!-- ══════════════════════════════════
+     PAGE: PRODUCT
+══════════════════════════════════ -->
+<div id="page-product" class="page">
+
+  <nav class="nav">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-main">By Nawal</span>
+      <span class="nav-logo-sub">Artisan Bags &amp; Accessories</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">New In</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Bags</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Our Story</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" aria-label="Search"><i class="ti ti-search"></i></button>
+      <button class="nav-icon-btn" aria-label="Wishlist"><i class="ti ti-heart"></i></button>
+      <button class="nav-icon-btn" aria-label="Cart"><i class="ti ti-shopping-bag"></i></button>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()"><i class="ti ti-menu-2"></i></button>
+    </div>
+    <div class="nav-drawer" id="nav-drawer-pd">
+      <a href="#">New In</a>
+      <a href="#">Collections</a>
+      <a href="#">Bags</a>
+      <a href="#">Accessories</a>
+      <a href="#">Our Story</a>
+    </div>
+  </nav>
+
+  <div class="pd-crumb">
+    <button class="back-btn" onclick="showHome()">
+      <i class="ti ti-arrow-left"></i> Back
+    </button>
+    &nbsp;/&nbsp; Bags &nbsp;/&nbsp; <span>The Nawal Tote '26</span>
+  </div>
+
+  <div class="pd-layout">
+
+    <div class="pd-gallery">
+      <div class="pd-main">
+        <img id="pd-main-img"
+          src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346"
+          alt="The Souq Tote" />
+      </div>
+      <div class="pd-thumbs">
+        <div class="pd-thumb active" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346')">
+          <img src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346" alt="View 1" />
+        </div>
+        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346')">
+          <img src="https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346" alt="View 2" />
+        </div>
+        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346')">
+          <img src="https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346" alt="View 3" />
+        </div>
+        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346')">
+          <img src="https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346" alt="View 4" />
+        </div>
+      </div>
+    </div>
+
+    <div class="pd-info">
+      <p class="pd-cat">2026 Collection — Totes</p>
+      <h1 class="pd-name">The Nawal Tote '26</h1>
+
+      <div class="pd-price-row">
+        <span class="pd-price">$295</span>
+      </div>
+
+      <hr class="pd-divider" />
+
+      <p class="pd-label">Colour — <span>Amethyst</span></p>
+      <div class="swatches">
+        <div class="swatch active" style="background:#6B2D82;" title="Amethyst" onclick="pickColour(this)"></div>
+        <div class="swatch" style="background:#C8963A;" title="Gold" onclick="pickColour(this)"></div>
+        <div class="swatch" style="background:#1C0A2E;" title="Midnight" onclick="pickColour(this)"></div>
+        <div class="swatch" style="background:#8B4513;" title="Cognac" onclick="pickColour(this)"></div>
+      </div>
+
+      <p class="pd-label">Size</p>
+      <div class="sizes">
+        <button class="size-btn" onclick="pickSize(this)">XS</button>
+        <button class="size-btn active" onclick="pickSize(this)">S</button>
+        <button class="size-btn" onclick="pickSize(this)">M</button>
+        <button class="size-btn" onclick="pickSize(this)">L</button>
+      </div>
+
+      <button class="pd-add" type="button">Add to Cart — $295</button>
+      <button class="pd-wish" type="button">
+        <i class="ti ti-heart"></i>&nbsp; Save to Wishlist
+      </button>
+
+      <ul class="pd-perks">
+        <li><i class="ti ti-check"></i> Full-grain vegetable-tanned leather</li>
+        <li><i class="ti ti-check"></i> Hand-stitched, limited run of 30</li>
+        <li><i class="ti ti-check"></i> Antique brass hardware</li>
+        <li><i class="ti ti-package"></i> Free shipping — delivered in 3–5 days</li>
+        <li><i class="ti ti-credit-card"></i> Buy now, pay later available</li>
+      </ul>
+
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-hdr" onclick="togAcc(this)">
+            Details &amp; Dimensions <i class="ti ti-plus"></i>
+          </div>
+          <div class="acc-body">
+            W 40cm × H 30cm × D 15cm. One interior zip pocket, two open slip pockets. Detachable leather shoulder strap. Magnetic snap closure.
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-hdr" onclick="togAcc(this)">
+            Material &amp; Care <i class="ti ti-plus"></i>
+          </div>
+          <div class="acc-body">
+            Full-grain leather, vegetable-tanned. Wipe clean with a dry cloth. Condition with a natural leather balm every 3 months. Store stuffed in the dust bag provided.
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-hdr" onclick="togAcc(this)">
+            Shipping &amp; Returns <i class="ti ti-plus"></i>
+          </div>
+          <div class="acc-body">
+            Free standard shipping on orders over $150. Express available at checkout. 30-day returns on full-price items in original condition.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- end page-product -->
+
+<script>
+  function showProduct() {
+    document.getElementById('page-home').classList.remove('active');
+    document.getElementById('page-product').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function showHome() {
+    document.getElementById('page-product').classList.remove('active');
+    document.getElementById('page-home').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleMenu() {
+    ['nav-drawer','nav-drawer-pd'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('open');
+    });
+  }
+  function swapImg(el, src) {
+    document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('pd-main-img').src = src;
+  }
+  function pickSize(el) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function pickColour(el) {
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function togAcc(hdr) {
+    const body = hdr.nextElementSibling;
+    const icon = hdr.querySelector('.ti-plus, .ti-minus');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.acc-hdr i').forEach(i => { i.className = 'ti ti-plus'; });
+    if (!isOpen) {
+      body.classList.add('open');
+      if (icon) icon.className = 'ti ti-minus';
+    }
+  }
+</script>
+
+</body>
+</html>
