@@ -1,1370 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>By Nawal — New Collection 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>RoyaltyCoon Group | Your Partner in Multi-Industry Excellence</title>
+<meta name="description" content="RoyaltyCoon Group of Companies — a Dubai-based multi-industry holding company spanning trading, travel, real estate, hospitality, finance and more.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --ink:      #1C0A2E;
-  --jewel:    #6B2D82;
-  --jewel2:   #8B3FA8;
-  --gold:     #C8963A;
-  --gold-lt:  #E8B86D;
-  --white:    #ffffff;
-  --off:      #F9F7FA;
-  --mist:     #F3EDF8;
-  --border:   #E2D8EC;
-  --muted:    #8A7598;
+:root{
+  --white:#ffffff;
+  --platinum:#eef0f2;
+  --silver:#d7dade;
+  --steel:#aeb4bc;
+  --graphite:#3c4045;
+  --ink:#14161a;
+  --line:rgba(20,22,26,0.08);
 }
-
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--white);
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  cursor:none;
+  overflow-x:hidden;
 }
+h1,h2,h3,.font-display{font-family:'Syne',sans-serif;}
 
-/* PAGE TOGGLE */
-.page { display: none; }
-.page.active { display: block; }
+/* ---------- custom cursor ---------- */
+.custom-cursor{
+  width:10px;height:10px;background:#fff;border-radius:50%;
+  position:fixed;pointer-events:none;mix-blend-mode:difference;
+  z-index:9998;transition:transform .18s cubic-bezier(.16,1,.3,1);
+  top:0;left:0;transform:translate(-50%,-50%);
+}
+.custom-cursor.hovering{transform:translate(-50%,-50%) scale(4);}
+@media (max-width:900px){.custom-cursor{display:none;} body{cursor:auto;}}
 
-/* ─────────────────────────────────────
-   NAV — mobile first
-───────────────────────────────────── */
-.nav {
-  background: var(--ink);
-  position: sticky;
-  top: 0;
-  z-index: 300;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.2rem;
-  height: 58px;
+/* ---------- noise overlay ---------- */
+.noise-overlay{
+  position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.035;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23n)"/></svg>');
 }
 
-.nav-logo {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  text-decoration: none;
+/* ---------- liquid metal button ---------- */
+.liquid-btn{
+  position:relative;display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2rem;border-radius:999px;overflow:hidden;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;
+  color:var(--ink);background:#f4f5f6;border:none;cursor:none;
+  box-shadow:-1px 0 3px rgba(255,80,80,.15), 1px 0 3px rgba(80,80,255,.15), 0 6px 20px rgba(0,0,0,.08);
+  transition:transform .3s ease;
 }
-.nav-logo-main {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: #fff;
-  letter-spacing: 0.06em;
-  line-height: 1;
+.liquid-btn:hover{transform:translateY(-2px);}
+.liquid-btn::before{
+  content:'';position:absolute;inset:-3px;border-radius:inherit;
+  background:conic-gradient(from var(--angle,0deg),transparent 0%,rgba(255,255,255,.95) 10%,rgba(180,200,220,.6) 20%,transparent 30%,rgba(200,180,255,.45) 50%,transparent 60%,rgba(255,220,200,.5) 80%,transparent 100%);
+  animation:spin 3s linear infinite;z-index:0;
 }
-.nav-logo-sub {
-  font-size: 7.5px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  font-weight: 400;
+.liquid-btn::after{content:'';position:absolute;inset:2px;border-radius:inherit;background:#f4f5f6;z-index:0;}
+.liquid-btn span{position:relative;z-index:1;}
+.liquid-btn.dark{background:#14161a;color:#fff;}
+.liquid-btn.dark::after{background:#14161a;}
+@keyframes spin{to{--angle:360deg;}}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+
+.btn-outline{
+  padding:.85rem 1.9rem;border-radius:999px;border:1px solid rgba(255,255,255,.5);
+  color:#fff;font-weight:600;font-size:.95rem;background:rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);cursor:none;transition:background .3s ease;
+}
+.btn-outline:hover{background:rgba(255,255,255,.18);}
+
+/* ---------- glass nav ---------- */
+.glass-nav{
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);
+  border-radius:999px;box-shadow:0 8px 32px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.nav-link{position:relative;color:var(--graphite);font-weight:500;font-size:.88rem;}
+.nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--ink);transition:width .25s ease;}
+.nav-link:hover::after{width:100%;}
+
+/* ---------- soft / glass card ---------- */
+.soft-card{
+  border-radius:1.5rem;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);
+  box-shadow:8px 8px 24px rgba(0,0,0,.06), -4px -4px 16px rgba(255,255,255,.9), inset 0 1px 0 rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.6);
+}
+.metal-image{filter:grayscale(.15) contrast(1.08) brightness(1.02);}
+
+.company-card{
+  position:relative;border-radius:1.25rem;overflow:hidden;background:var(--platinum);
+  box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s ease;
+}
+.company-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12);}
+.company-card img{transition:transform .6s ease;}
+.company-card:hover img{transform:scale(1.06);}
+
+/* progress bars */
+.value-bar{height:6px;border-radius:999px;background:var(--silver);overflow:hidden;}
+.value-fill{height:100%;border-radius:999px;width:0%;background:linear-gradient(90deg,#9aa0a8,#3c4045);}
+
+/* section eyebrow */
+.eyebrow{
+  font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--graphite);
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--graphite);display:inline-block;}
+
+/* headline mask */
+.mask-line{overflow:hidden;display:block;}
+
+/* hero */
+.hero-bg{
+  background-image:linear-gradient(180deg, rgba(10,12,16,.55) 0%, rgba(10,12,16,.35) 40%, rgba(10,12,16,.75) 100%), url('https://images.pexels.com/photos/13256066/pexels-photo-13256066.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  background-size:cover;background-position:center;
 }
 
-/* desktop nav links — hidden on mobile */
-.nav-links {
-  display: none;
-  gap: 2rem;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--gold-lt); }
+/* blob canvas wrap */
+.blob-wrap{position:relative;overflow:hidden;border-radius:2rem;}
+.blob-wrap canvas{width:100%;height:100%;display:block;}
 
-.nav-right { display: flex; align-items: center; gap: 0.9rem; }
-.nav-icon-btn {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.72);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: color 0.2s;
-  padding: 4px;
-}
-.nav-icon-btn:hover { color: var(--gold-lt); }
+.hero-bg .eyebrow::before, #values .eyebrow::before{background:rgba(255,255,255,.55);}
 
-/* hamburger */
-.hamburger {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.8);
-  font-size: 22px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 4px;
-}
+::selection{background:var(--ink);color:#fff;}
 
-/* mobile drawer */
-.nav-drawer {
-  display: none;
-  flex-direction: column;
-  background: var(--ink);
-  position: absolute;
-  top: 58px;
-  left: 0;
-  right: 0;
-  z-index: 299;
-  padding: 0.5rem 0 1.5rem;
-  border-top: 0.5px solid rgba(255,255,255,0.08);
-}
-.nav-drawer.open { display: flex; }
-.nav-drawer a {
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
-  text-decoration: none;
-  padding: 0.85rem 1.5rem;
-  border-bottom: 0.5px solid rgba(255,255,255,0.05);
-  transition: color 0.2s;
-}
-.nav-drawer a:hover { color: var(--gold-lt); }
-
-/* ─────────────────────────────────────
-   TICKER
-───────────────────────────────────── */
-.ticker {
-  background: var(--jewel);
-  padding: 8px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.ticker-inner {
-  display: inline-block;
-  animation: tick 28s linear infinite;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-}
-.ticker-inner span { margin: 0 2rem; }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ─────────────────────────────────────
-   HERO — mobile: stacked, desktop: split
-───────────────────────────────────── */
-.hero { display: flex; flex-direction: column; }
-
-.hero-img {
-  background: var(--ink);
-  overflow: hidden;
-  position: relative;
-  height: 56vw;
-  min-height: 260px;
-  max-height: 480px;
-}
-.hero-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  opacity: 0.88;
-}
-
-.hero-stamp {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  width: 62px;
-  height: 62px;
-  border: 1px solid var(--gold);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-}
-.hero-stamp-label {
-  font-size: 7px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  text-align: center;
-  line-height: 1.3;
-}
-
-.hero-text {
-  background: var(--white);
-  padding: 2.4rem 1.2rem 2.8rem;
-  position: relative;
-  overflow: hidden;
-}
-.hero-watermark {
-  position: absolute;
-  right: -1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 130px;
-  color: rgba(107,45,130,0.05);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  font-style: italic;
-}
-
-.hero-eyebrow {
-  font-size: 9.5px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--jewel);
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 44px;
-  font-weight: 300;
-  line-height: 1.06;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-.hero-title em { font-style: italic; color: var(--jewel); }
-.hero-desc {
-  font-size: 13.5px;
-  line-height: 1.8;
-  color: var(--muted);
-  margin-bottom: 2rem;
-  font-weight: 300;
-  max-width: 380px;
-}
-.hero-cta { display: flex; flex-direction: column; gap: 0.75rem; }
-.hero-cta a { text-align: center; }
-
-/* ─────────────────────────────────────
-   BUTTONS
-───────────────────────────────────── */
-.btn {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  padding: 13px 28px;
-}
-.btn-jewel { background: var(--jewel); color: #fff; }
-.btn-jewel:hover { background: var(--jewel2); }
-.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border); }
-.btn-outline:hover { border-color: var(--jewel); color: var(--jewel); }
-.btn-gold { background: var(--gold); color: var(--ink); }
-.btn-gold:hover { background: var(--gold-lt); }
-.btn-white { background: #fff; color: var(--jewel); }
-.btn-white:hover { background: var(--gold); color: var(--ink); }
-.btn-full { display: block; width: 100%; text-align: center; }
-
-/* ─────────────────────────────────────
-   SECTIONS
-───────────────────────────────────── */
-.section     { padding: 3rem 1.2rem; background: var(--white); }
-.section-alt { padding: 3rem 1.2rem; background: var(--off); }
-
-.sec-hdr {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 1.6rem;
-}
-.sec-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.15;
-}
-.sec-title em { font-style: italic; color: var(--jewel); }
-.view-all {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--jewel);
-  text-decoration: none;
-  border-bottom: 0.5px solid var(--jewel);
-  padding-bottom: 2px;
-  white-space: nowrap;
-}
-
-/* ─────────────────────────────────────
-   PRODUCT GRID — 2 col mobile, 4 col desktop
-───────────────────────────────────── */
-.grid-products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.product-card { cursor: pointer; }
-.product-card-img {
-  position: relative;
-  overflow: hidden;
-  background: var(--mist);
-  aspect-ratio: 3 / 4;
-}
-.product-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.65s ease;
-}
-.product-card:hover .product-card-img img { transform: scale(1.06); }
-
-.badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 8.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  font-weight: 500;
-}
-.badge-new { background: var(--jewel); color: #fff; }
-.badge-hot { background: var(--gold); color: var(--ink); }
-
-.product-info { padding: 10px 0 0; }
-.product-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  color: var(--ink);
-  margin-bottom: 2px;
-  font-weight: 400;
-}
-.product-sub { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-.product-price { font-size: 13px; color: var(--ink); font-family: 'Cormorant Garamond', serif; }
-.product-price s { color: #c0aed0; margin-right: 4px; }
-
-.product-quick {
-  display: block;
-  width: 100%;
-  margin-top: 8px;
-  padding: 9px;
-  background: transparent;
-  border: 0.5px solid var(--border);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
-  opacity: 0;
-}
-.product-card:hover .product-quick { opacity: 1; }
-.product-quick:hover { background: var(--jewel); color: #fff; border-color: var(--jewel); }
-
-/* ─────────────────────────────────────
-   FEATURE STRIP
-───────────────────────────────────── */
-.feature-strip {
-  background: var(--ink);
-  padding: 2.5rem 1.2rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-}
-.feature-item {
-  text-align: center;
-  padding: 1.4rem 0.8rem;
-  border-bottom: 0.5px solid rgba(255,255,255,0.06);
-}
-.feature-item:nth-child(odd) { border-right: 0.5px solid rgba(255,255,255,0.06); }
-.feature-icon { font-size: 26px; color: var(--gold); margin-bottom: 0.6rem; }
-.feature-title {
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-}
-.feature-desc { font-size: 11.5px; color: rgba(255,255,255,0.38); line-height: 1.55; }
-
-/* ─────────────────────────────────────
-   EDITORIAL SPLIT — stacked mobile, side-by-side desktop
-───────────────────────────────────── */
-.editorial { display: flex; flex-direction: column; }
-.editorial-img {
-  overflow: hidden;
-  background: var(--mist);
-  height: 60vw;
-  min-height: 240px;
-  max-height: 500px;
-}
-.editorial-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.editorial-text {
-  background: var(--jewel);
-  padding: 2.8rem 1.5rem;
-  position: relative;
-  overflow: hidden;
-}
-.editorial-bg {
-  position: absolute;
-  right: -1rem;
-  bottom: -2rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 160px;
-  color: rgba(0,0,0,0.07);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  font-style: italic;
-}
-.editorial-eyebrow {
-  font-size: 9.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-.editorial-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.18;
-  margin-bottom: 1.2rem;
-}
-.editorial-title em { font-style: italic; color: var(--gold-lt); }
-.editorial-body {
-  font-size: 13.5px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.58);
-  margin-bottom: 2rem;
-  font-weight: 300;
-}
-
-/* ─────────────────────────────────────
-   TESTIMONIALS
-───────────────────────────────────── */
-.testimonials {
-  padding: 3rem 1.2rem;
-  background: var(--white);
-  border-top: 0.5px solid var(--border);
-}
-.test-eyebrow {
-  text-align: center;
-  font-size: 9.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--jewel);
-  margin-bottom: 2rem;
-  font-weight: 500;
-}
-.test-grid { display: flex; flex-direction: column; gap: 1rem; }
-.test-card {
-  background: var(--white);
-  border: 0.5px solid var(--border);
-  padding: 1.6rem 1.4rem;
-}
-.test-stars { color: var(--gold); font-size: 12px; margin-bottom: 0.8rem; letter-spacing: 3px; }
-.test-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  line-height: 1.72;
-  color: var(--ink);
-  font-style: italic;
-  margin-bottom: 0.9rem;
-}
-.test-author {
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ─────────────────────────────────────
-   NEWSLETTER
-───────────────────────────────────── */
-.newsletter {
-  padding: 3.5rem 1.2rem;
-  background: var(--off);
-  text-align: center;
-  border-top: 0.5px solid var(--border);
-}
-.nl-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  font-weight: 300;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-}
-.nl-sub { font-size: 13px; color: var(--muted); margin-bottom: 1.8rem; font-weight: 300; }
-.nl-form { display: flex; flex-direction: column; gap: 0.6rem; max-width: 420px; margin: 0 auto; }
-.nl-form input {
-  width: 100%;
-  padding: 13px 16px;
-  border: 0.5px solid var(--border);
-  background: #fff;
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
-  color: var(--ink);
-  outline: none;
-}
-.nl-form input:focus { border-color: var(--jewel); }
-.nl-form button {
-  padding: 13px 24px;
-  background: var(--jewel);
-  color: #fff;
-  border: none;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-.nl-form button:hover { background: var(--jewel2); }
-
-/* ─────────────────────────────────────
-   FOOTER
-───────────────────────────────────── */
-footer {
-  background: var(--ink);
-  padding: 3rem 1.2rem 1.5rem;
-}
-.footer-brand { margin-bottom: 2rem; }
-.footer-brand-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  color: #fff;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.footer-brand-tagline {
-  font-size: 7.5px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  display: block;
-  margin-bottom: 0.9rem;
-}
-.footer-desc {
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.34);
-  font-weight: 300;
-  max-width: 280px;
-}
-.footer-cols {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem 1rem;
-  margin-bottom: 2.5rem;
-}
-.footer-col-title {
-  font-size: 9.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 0.55rem; }
-.footer-links a {
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.38);
-  text-decoration: none;
-  transition: color 0.2s;
-  font-weight: 300;
-}
-.footer-links a:hover { color: rgba(255,255,255,0.88); }
-.footer-bottom {
-  border-top: 0.5px solid rgba(255,255,255,0.08);
-  padding-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  text-align: center;
-}
-.footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
-.footer-social { display: flex; gap: 1.2rem; }
-.footer-social a {
-  font-size: 19px;
-  color: rgba(255,255,255,0.35);
-  transition: color 0.2s;
-  text-decoration: none;
-}
-.footer-social a:hover { color: var(--gold); }
-
-/* ─────────────────────────────────────
-   PRODUCT PAGE
-───────────────────────────────────── */
-.pd-crumb {
-  padding: 1rem 1.2rem;
-  font-size: 11.5px;
-  color: var(--muted);
-  border-bottom: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--white);
-}
-.pd-crumb span { color: var(--ink); }
-.back-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-family: 'Inter', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0;
-  transition: color 0.2s;
-}
-.back-btn:hover { color: var(--jewel); }
-
-/* product layout — stacked on mobile */
-.pd-layout { display: flex; flex-direction: column; background: var(--white); }
-
-.pd-gallery { padding: 1.2rem; }
-.pd-main {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: var(--mist);
-  overflow: hidden;
-  margin-bottom: 0.7rem;
-}
-.pd-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.pd-thumbs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 4px; }
-.pd-thumb {
-  width: 64px;
-  height: 80px;
-  background: var(--mist);
-  overflow: hidden;
-  cursor: pointer;
-  border: 1.5px solid transparent;
-  flex-shrink: 0;
-  transition: border-color 0.2s;
-}
-.pd-thumb.active { border-color: var(--jewel); }
-.pd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.pd-info {
-  padding: 1.6rem 1.2rem 2.5rem;
-  border-top: 0.5px solid var(--border);
-}
-.pd-cat {
-  font-size: 9.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--jewel);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-}
-.pd-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-}
-.pd-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  margin-bottom: 1.4rem;
-}
-.pd-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  color: var(--ink);
-}
-.pd-price-old {
-  font-size: 16px;
-  color: #c0aed0;
-  text-decoration: line-through;
-  font-family: 'Cormorant Garamond', serif;
-}
-.pd-divider { border: none; border-top: 0.5px solid var(--border); margin: 1.2rem 0; }
-.pd-label {
-  font-size: 9.5px;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-}
-.pd-label span { font-style: italic; color: var(--ink); text-transform: none; letter-spacing: 0; }
-
-.swatches { display: flex; gap: 0.6rem; margin-bottom: 1.4rem; }
-.swatch {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-.swatch.active { border-color: var(--jewel); outline-color: var(--jewel); }
-
-.sizes { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
-.size-btn {
-  min-width: 48px;
-  height: 48px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.5px solid var(--border);
-  font-size: 13px;
-  color: var(--ink);
-  cursor: pointer;
-  font-family: 'Cormorant Garamond', serif;
-  background: transparent;
-  transition: all 0.2s;
-}
-.size-btn:hover, .size-btn.active { background: var(--jewel); color: #fff; border-color: var(--jewel); }
-
-.pd-add {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  background: var(--jewel);
-  color: #fff;
-  border: none;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  transition: background 0.2s;
-  margin-bottom: 0.7rem;
-}
-.pd-add:hover { background: var(--jewel2); }
-.pd-wish {
-  display: block;
-  width: 100%;
-  padding: 13px;
-  background: transparent;
-  color: var(--ink);
-  border: 0.5px solid var(--border);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.2s;
-  margin-bottom: 1.6rem;
-}
-.pd-wish:hover { border-color: var(--jewel); color: var(--jewel); }
-
-.pd-perks { list-style: none; }
-.pd-perks li {
-  font-size: 12.5px;
-  color: var(--muted);
-  padding: 8px 0;
-  border-bottom: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 300;
-}
-.pd-perks li i { color: var(--jewel); font-size: 15px; flex-shrink: 0; }
-
-/* accordion */
-.accordion { border-top: 0.5px solid var(--border); margin-top: 1.6rem; }
-.acc-item { border-bottom: 0.5px solid var(--border); }
-.acc-hdr {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  cursor: pointer;
-  font-size: 10.5px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink);
-  font-weight: 500;
-  user-select: none;
-  transition: color 0.2s;
-}
-.acc-hdr:hover { color: var(--jewel); }
-.acc-body {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--muted);
-  padding: 0 0 1.2rem;
-  display: none;
-  font-weight: 300;
-}
-.acc-body.open { display: block; }
-
-/* ─────────────────────────────────────
-   TABLET: 600px+
-───────────────────────────────────── */
-@media (min-width: 600px) {
-  .nav { padding: 0 2rem; height: 62px; }
-  .nav-drawer { top: 62px; }
-  .hero-img { height: 44vw; max-height: 520px; }
-  .hero-text { padding: 3rem 2rem 3.5rem; }
-  .hero-title { font-size: 52px; }
-  .hero-cta { flex-direction: row; }
-  .hero-cta a { text-align: left; }
-  .section, .section-alt { padding: 4rem 2rem; }
-  .editorial-img { height: 46vw; max-height: 420px; }
-  .editorial-text { padding: 3rem 2rem; }
-  .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-  .nl-form { flex-direction: row; gap: 0; }
-  .nl-form input { flex: 1; }
-  .footer-cols { grid-template-columns: repeat(3,1fr); }
-  .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
-  .feature-strip { grid-template-columns: repeat(4,1fr); }
-  .feature-item { border-bottom: none; }
-  .feature-item:nth-child(odd) { border-right: none; }
-  .feature-item:not(:last-child) { border-right: 0.5px solid rgba(255,255,255,0.06); }
-  .pd-gallery { padding: 2rem; }
-  .pd-info { padding: 2rem; }
-}
-
-/* ─────────────────────────────────────
-   DESKTOP: 960px+
-───────────────────────────────────── */
-@media (min-width: 960px) {
-  .nav { padding: 0 3rem; height: 66px; }
-  .nav-drawer { top: 66px; }
-  .nav-links { display: flex; }
-  .hamburger { display: none; }
-
-  .hero {
-    flex-direction: row;
-    min-height: 88vh;
-  }
-  .hero-img {
-    flex: 1;
-    height: auto;
-    max-height: none;
-  }
-  .hero-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4.5rem 4rem;
-  }
-  .hero-watermark { font-size: 180px; }
-  .hero-title { font-size: 58px; }
-  .hero-stamp { width: 72px; height: 72px; top: 2rem; left: 2rem; }
-
-  .grid-products { grid-template-columns: repeat(4,1fr); gap: 1.6rem; }
-
-  .section, .section-alt { padding: 5.5rem 3rem; }
-
-  .editorial {
-    flex-direction: row;
-    min-height: 560px;
-  }
-  .editorial-img { flex: 1.25; height: auto; max-height: none; }
-  .editorial-text {
-    flex: 0.75;
-    padding: 4.5rem 3.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .editorial-title { font-size: 38px; }
-  .editorial-bg { font-size: 220px; }
-
-  .testimonials, .newsletter { padding: 5.5rem 3rem; }
-
-  .footer-cols { grid-template-columns: repeat(4,1fr); }
-  footer { padding: 4rem 3rem 2rem; }
-  .footer-brand { margin-bottom: 0; }
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
-    gap: 2.5rem;
-    margin-bottom: 3rem;
-    align-items: start;
-  }
-  .footer-cols { display: contents; }
-
-  .pd-layout { flex-direction: row; min-height: 78vh; }
-  .pd-gallery { flex: 1.1; padding: 2.5rem 2rem 2.5rem 3rem; border-top: none; }
-  .pd-info { flex: 0.9; padding: 3rem; border-top: none; border-left: 0.5px solid var(--border); }
-  .pd-crumb { padding: 1.2rem 3rem; }
-  .pd-name { font-size: 32px; }
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
 }
 </style>
 </head>
-<body>
+<body class="antialiased">
 
-<!-- ══════════════════════════════════
-     PAGE: HOME
-══════════════════════════════════ -->
-<div id="page-home" class="page active">
+<div class="custom-cursor" id="cursor"></div>
+<div class="noise-overlay"></div>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a class="nav-logo" href="#">
-      <span class="nav-logo-main">By Nawal</span>
-      <span class="nav-logo-sub">Artisan Bags &amp; Accessories</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">New In</a></li>
-      <li><a href="#">Collections</a></li>
-      <li><a href="#">Bags</a></li>
-      <li><a href="#">Accessories</a></li>
-      <li><a href="#">Our Story</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="nav-icon-btn" aria-label="Search"><i class="ti ti-search"></i></button>
-      <button class="nav-icon-btn" aria-label="Wishlist"><i class="ti ti-heart"></i></button>
-      <button class="nav-icon-btn" aria-label="Cart"><i class="ti ti-shopping-bag"></i></button>
-      <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()"><i class="ti ti-menu-2"></i></button>
-    </div>
-    <div class="nav-drawer" id="nav-drawer">
-      <a href="#">New In</a>
-      <a href="#">Collections</a>
-      <a href="#">Bags</a>
-      <a href="#">Accessories</a>
-      <a href="#">Our Story</a>
-    </div>
-  </nav>
+<!-- ================= NAV ================= -->
+<nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 glass-nav px-2 py-2 flex items-center gap-1 w-[92%] max-w-3xl justify-between" id="glassNav">
+  <a href="#top" class="font-display font-bold tracking-tight text-[15px] pl-4 pr-2 whitespace-nowrap" data-hover>ROYALTY<span class="font-normal">COON</span></a>
+  <div class="hidden md:flex items-center gap-6 px-4">
+    <a href="#companies" class="nav-link" data-hover>Companies</a>
+    <a href="#about" class="nav-link" data-hover>About</a>
+    <a href="#services" class="nav-link" data-hover>Services</a>
+    <a href="#values" class="nav-link" data-hover>Values</a>
+    <a href="#contact" class="nav-link" data-hover>Contact</a>
+  </div>
+  <a href="#contact" class="liquid-btn !py-2 !px-5 !text-[13px]" data-hover><span>Get In Touch</span></a>
+</nav>
 
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-inner">
-      <span>New Collection 2026</span><span>·</span>
-      <span>Limited editions</span><span>·</span>
-      <span>Full-grain leather</span><span>·</span>
-      <span>Free shipping over $150</span><span>·</span>
-      <span>By Nawal — 2026</span><span>·</span>
-      <span>New Collection 2026</span><span>·</span>
-      <span>Limited editions</span><span>·</span>
-      <span>Full-grain leather</span><span>·</span>
-      <span>Free shipping over $150</span><span>·</span>
-      <span>By Nawal — 2026</span><span>·</span>
+<!-- ================= HERO ================= -->
+<header id="top" class="hero-bg min-h-screen w-full flex flex-col justify-end relative">
+  <div class="max-w-7xl mx-auto w-full px-6 md:px-10 pb-16 pt-40 text-white">
+    <p class="eyebrow !text-white/70 mb-6" style="--tw-text-opacity:1"><span style="color:#fff">25 Years Strong &middot; Dubai, UAE</span></p>
+    <h1 class="font-display font-extrabold leading-[0.95] text-[13vw] md:text-[6.2rem] tracking-tight mb-8">
+      <div class="mask-line"><span class="hero-word inline-block">Your Partner</span></div>
+      <div class="mask-line"><span class="hero-word inline-block">in Multi-Industry</span></div>
+      <div class="mask-line"><span class="hero-word inline-block" style="background:linear-gradient(100deg,#fff,#c7ccd3,#fff);-webkit-background-clip:text;background-clip:text;color:transparent;">Excellence</span></div>
+    </h1>
+    <p class="hero-sub max-w-xl text-white/80 text-lg mb-10 leading-relaxed">Twelve companies, one standard of excellence. From general trading to hospitality, real estate to government services — tailored solutions across every sector we touch.</p>
+    <div class="hero-cta flex flex-wrap gap-4 mb-16">
+      <a href="#companies" class="liquid-btn" data-hover><span>Explore Our Companies</span></a>
+      <a href="#about" class="btn-outline" data-hover>Our Story</a>
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-img">
-      <img src="https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346" alt="By Nawal campaign" />
-      <div class="hero-stamp">
-        <span class="hero-stamp-label">New<br>2026</span>
-      </div>
+  <div class="float-cards max-w-7xl mx-auto w-full px-6 md:px-10 pb-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="float-card soft-card !bg-white/10 !border-white/20 p-5 text-white">
+      <div class="font-display font-bold text-3xl">25</div>
+      <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Years of Experience</div>
     </div>
-    <div class="hero-text">
-      <div class="hero-watermark" aria-hidden="true">N</div>
-      <p class="hero-eyebrow">New Collection — 2026</p>
-      <h1 class="hero-title">A new year.<br><em>A new shape.</em></h1>
-      <p class="hero-desc">The 2026 collection strips everything back — cleaner silhouettes, deeper textures, the same hands that made them. This is what craft looks like when it evolves.</p>
-      <div class="hero-cta">
-        <a class="btn btn-jewel" onclick="showProduct()" href="#">Shop 2026 Collection</a>
-        <a class="btn btn-outline" href="#">Our Story</a>
-      </div>
+    <div class="float-card soft-card !bg-white/10 !border-white/20 p-5 text-white">
+      <div class="font-display font-bold text-3xl">12</div>
+      <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Industry Verticals</div>
     </div>
-  </section>
-
-  <!-- NEW IN -->
-  <section class="section">
-    <div class="sec-hdr">
-      <h2 class="sec-title">2026 <em>Drops</em></h2>
-      <a class="view-all" href="#">View all</a>
+    <div class="float-card soft-card !bg-white/10 !border-white/20 p-5 text-white">
+      <div class="font-display font-bold text-3xl">1</div>
+      <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Unified Group</div>
     </div>
-    <div class="grid-products">
-
-      <div class="product-card" onclick="showProduct()">
-        <div class="product-card-img">
-          <img src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346" alt="The Nawal Tote 26" />
-          <span class="badge badge-new">New 2026</span>
-        </div>
-        <div class="product-info">
-          <p class="product-name">The Nawal Tote '26</p>
-          <p class="product-sub">Structured full-grain leather</p>
-          <p class="product-price"><strong>$295</strong></p>
-        </div>
-        <button class="product-quick">Quick View</button>
-      </div>
-
-      <div class="product-card" onclick="showProduct()">
-        <div class="product-card-img">
-          <img src="https://amalayub.com/cdn/shop/files/9504B132-80DB-4728-B5CA-1D61019F2277.jpg?v=1771873613&width=1346" alt="The Dusk Bucket" />
-          <span class="badge badge-hot">Selling Fast</span>
-        </div>
-        <div class="product-info">
-          <p class="product-name">The Dusk Bucket</p>
-          <p class="product-sub">Burnished vegetable tan</p>
-          <p class="product-price"><strong>$265</strong></p>
-        </div>
-        <button class="product-quick">Quick View</button>
-      </div>
-
-      <div class="product-card" onclick="showProduct()">
-        <div class="product-card-img">
-          <img src="https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346" alt="Mini Arc Bag" />
-          <span class="badge badge-new">New 2026</span>
-        </div>
-        <div class="product-info">
-          <p class="product-name">Mini Arc Bag</p>
-          <p class="product-sub">Crossbody — 4 colours</p>
-          <p class="product-price"><strong>$210</strong></p>
-        </div>
-        <button class="product-quick">Quick View</button>
-      </div>
-
-      <div class="product-card" onclick="showProduct()">
-        <div class="product-card-img">
-          <img src="https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346" alt="The Evening Frame" />
-        </div>
-        <div class="product-info">
-          <p class="product-name">The Evening Frame</p>
-          <p class="product-sub">Hard-frame clutch</p>
-          <p class="product-price"><strong>$175</strong></p>
-        </div>
-        <button class="product-quick">Quick View</button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FEATURE STRIP -->
-  <div class="feature-strip">
-    <div class="feature-item">
-      <div class="feature-icon"><i class="ti ti-package"></i></div>
-      <p class="feature-title">Free Shipping</p>
-      <p class="feature-desc">On orders over $150</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="ti ti-award"></i></div>
-      <p class="feature-title">Artisan-Made</p>
-      <p class="feature-desc">Hand-stitched every piece</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="ti ti-refresh"></i></div>
-      <p class="feature-title">30-Day Returns</p>
-      <p class="feature-desc">Hassle-free, no questions</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="ti ti-lock"></i></div>
-      <p class="feature-title">Secure Checkout</p>
-      <p class="feature-desc">All major cards accepted</p>
+    <div class="float-card soft-card !bg-white/10 !border-white/20 p-5 text-white">
+      <div class="font-display font-bold text-3xl">UAE</div>
+      <div class="text-xs text-white/70 mt-1 uppercase tracking-wide">Headquartered</div>
     </div>
   </div>
+</header>
 
-  <!-- EDITORIAL SPLIT -->
-  <div class="editorial">
-    <div class="editorial-img">
-      <img src="https://amalayub.com/cdn/shop/files/9504B132-80DB-4728-B5CA-1D61019F2277.jpg?v=1771873613&width=1346" alt="The By Nawal story" />
-    </div>
-    <div class="editorial-text">
-      <div class="editorial-bg" aria-hidden="true">N</div>
-      <p class="editorial-eyebrow">The 2026 Edit</p>
-      <h2 class="editorial-title">Less noise.<br>More <em>intention.</em></h2>
-      <p class="editorial-body">The 2026 collection is our most considered yet. Fewer pieces, tighter forms, leather that gets better with every year you carry it. We made less so you could choose better.</p>
-      <a class="btn btn-white" href="#">See the full 2026 edit</a>
-    </div>
+<!-- ================= OUR COMPANIES ================= -->
+<section id="companies" class="max-w-7xl mx-auto px-6 md:px-10 py-28">
+  <div class="max-w-2xl mb-14">
+    <p class="eyebrow mb-4">Our Companies</p>
+    <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight">Twelve industries. One group.</h2>
   </div>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <p class="test-eyebrow">What our customers say — 2026 Collection</p>
-    <div class="test-grid">
-      <div class="test-card">
-        <p class="test-stars">★★★★★</p>
-        <p class="test-quote">"The 2026 pieces are even better than last year. The Arc Bag is the most elegant thing I own."</p>
-        <p class="test-author">— Yasmine K.</p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="companyGrid"></div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="bg-[var(--platinum)] py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-14 items-center">
+    <div class="relative">
+      <div class="soft-card p-3 rotate-[-2deg]">
+        <img src="https://images.pexels.com/photos/36145985/pexels-photo-36145985.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Modern Dubai skyscraper skyline" class="metal-image rounded-[1.1rem] w-full h-[420px] object-cover">
       </div>
-      <div class="test-card">
-        <p class="test-stars">★★★★★</p>
-        <p class="test-quote">"Cleaner, stronger, more refined. You can feel this collection was made with real intention behind every cut."</p>
-        <p class="test-author">— Sara M.</p>
-      </div>
-      <div class="test-card">
-        <p class="test-stars">★★★★★</p>
-        <p class="test-quote">"I pre-ordered the Nawal Tote '26 and it arrived better than the photos. The leather is extraordinary."</p>
-        <p class="test-author">— Nadia H.</p>
+      <div class="soft-card absolute -bottom-8 -right-6 p-6 rotate-[2deg] max-w-[190px]">
+        <div class="font-display font-extrabold text-4xl">25</div>
+        <div class="text-xs uppercase tracking-wide text-gray-600 mt-1">Years of Experience in this field</div>
       </div>
     </div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <h2 class="nl-title">Get early access to 2026</h2>
-    <p class="nl-sub">Be first to know when new 2026 pieces drop — limited runs sell out fast.</p>
-    <div class="nl-form">
-      <input type="email" placeholder="your@email.com" />
-      <button type="button">Subscribe</button>
+    <div>
+      <p class="eyebrow mb-4">About Us</p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight mb-6">Built on a legacy of diversified excellence.</h2>
+      <p class="text-gray-700 leading-relaxed mb-5">RoyaltyCoon Group of Companies is a limited liability company (LLC) that encompasses a diverse range of businesses. This structure allows for flexibility and protection of personal assets while enabling each subsidiary to operate under a unified brand.</p>
+      <p class="text-gray-700 leading-relaxed mb-5">This diversified approach helps mitigate risks and capitalize on different market opportunities. Each business within the group maintains its own identity while benefiting from shared resources, expertise, and strategic oversight.</p>
+      <p class="text-gray-700 leading-relaxed">Empowering communities through sustainable practices, we commit to making a positive impact beyond our business.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <p class="footer-brand-name">By Nawal</p>
-        <span class="footer-brand-tagline">Artisan Bags &amp; Accessories</span>
-        <p class="footer-desc">Artisan bags and accessories rooted in heritage craftsmanship, designed for the modern woman.</p>
+<!-- ================= SERVICES ================= -->
+<section id="services" class="max-w-7xl mx-auto px-6 md:px-10 py-28">
+  <div class="max-w-2xl mb-14">
+    <p class="eyebrow mb-4">What We Do</p>
+    <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight mb-6">Services built for every sector.</h2>
+    <p class="text-gray-600 leading-relaxed">At Royal Tycoon, we are your partner in multi-industry excellence. Our diverse services cater to the unique needs of various sectors, delivering tailored solutions that ensure your success.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="soft-card overflow-hidden">
+      <img src="https://images.pexels.com/photos/1381722/pexels-photo-1381722.jpeg?auto=compress&cs=tinysrgb&w=900" alt="High-rise buildings representing real estate" class="metal-image w-full h-56 object-cover">
+      <div class="p-7">
+        <h3 class="font-display font-bold text-xl mb-2">Properties LLC</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Real estate experiences with exceptional properties and unmatched service.</p>
       </div>
-      <div class="footer-cols">
+    </div>
+    <div class="soft-card overflow-hidden">
+      <img src="https://images.pexels.com/photos/36003986/pexels-photo-36003986.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Stacked metal beams in an industrial yard" class="metal-image w-full h-56 object-cover">
+      <div class="p-7">
+        <h3 class="font-display font-bold text-xl mb-2">Metal House LLC</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Leading the way in innovative metal solutions, blending quality with craftsmanship.</p>
+      </div>
+    </div>
+    <div class="soft-card overflow-hidden">
+      <img src="https://images.pexels.com/photos/32543353/pexels-photo-32543353.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Bustling indoor trading market" class="metal-image w-full h-56 object-cover">
+      <div class="p-7">
+        <h3 class="font-display font-bold text-xl mb-2">Trading LLC</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Your trusted partner in global trading, delivering value and efficiency across markets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CORE VALUES ================= -->
+<section id="values" class="bg-[var(--ink)] text-white py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-16 items-start relative z-10">
+    <div>
+      <p class="eyebrow !text-white/60 mb-4"><span style="color:#fff">Our Core Values</span></p>
+      <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight mb-6">What guides every decision we make.</h2>
+      <p class="text-white/70 leading-relaxed">Our core values guide our operations and drive our success. We uphold integrity in all interactions, fostering trust with clients and partners. Our commitment to innovation inspires us to deliver creative solutions that meet the needs of diverse industries. We value collaboration, recognizing that teamwork enhances success. Sustainability is central to our practices, ensuring a positive impact on the environment and communities.</p>
+    </div>
+    <div class="space-y-6">
+      <div class="value-item" data-value="80">
+        <div class="flex justify-between text-sm mb-2"><span class="font-medium">Excellence</span><span class="value-num text-white/60">0%</span></div>
+        <div class="value-bar !bg-white/15"><div class="value-fill"></div></div>
+      </div>
+      <div class="value-item" data-value="75">
+        <div class="flex justify-between text-sm mb-2"><span class="font-medium">Integrity</span><span class="value-num text-white/60">0%</span></div>
+        <div class="value-bar !bg-white/15"><div class="value-fill"></div></div>
+      </div>
+      <div class="value-item" data-value="99">
+        <div class="flex justify-between text-sm mb-2"><span class="font-medium">Safety</span><span class="value-num text-white/60">0%</span></div>
+        <div class="value-bar !bg-white/15"><div class="value-fill"></div></div>
+      </div>
+      <div class="value-item" data-value="85">
+        <div class="flex justify-between text-sm mb-2"><span class="font-medium">Innovation</span><span class="value-num text-white/60">0%</span></div>
+        <div class="value-bar !bg-white/15"><div class="value-fill"></div></div>
+      </div>
+      <div class="value-item" data-value="100">
+        <div class="flex justify-between text-sm mb-2"><span class="font-medium">Trust</span><span class="value-num text-white/60">0%</span></div>
+        <div class="value-bar !bg-white/15"><div class="value-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="max-w-7xl mx-auto px-6 md:px-10 py-28">
+  <div class="max-w-2xl mb-14">
+    <p class="eyebrow mb-4">Our Contact Info</p>
+    <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight">Let's start a conversation.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-14">
+    <div class="space-y-6">
+      <div class="soft-card p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-[var(--ink)] text-white flex items-center justify-center shrink-0">📍</div>
         <div>
-          <p class="footer-col-title">Shop</p>
-          <ul class="footer-links">
-            <li><a href="#">New In</a></li>
-            <li><a href="#">Totes</a></li>
-            <li><a href="#">Crossbodies</a></li>
-            <li><a href="#">Clutches</a></li>
-            <li><a href="#">Accessories</a></li>
-          </ul>
+          <div class="text-xs uppercase tracking-wide text-gray-500 mb-1">Address</div>
+          <a href="https://www.google.com/maps/place/Ras+Al+Khor+Industrial+Area+-+Ras+Al+Khor+Industrial+Area+1+-+Dubai+-+United+Arab+Emirates/@25.1771948,55.3326318,16z/data=!3m1!4b1!4m6!3m5!1s0x3e5f67b60a815999:0xa5fa31866258329a!8m2!3d25.1801556!4d55.3392359!16s%2Fm%2F03qm3lv?entry=ttu" target="_blank" rel="noopener" class="text-gray-700 hover:text-black" data-hover>Shop No 11, Ras Al Khor Industrial Area, Dubai</a>
         </div>
+      </div>
+      <div class="soft-card p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-[var(--ink)] text-white flex items-center justify-center shrink-0">✉️</div>
         <div>
-          <p class="footer-col-title">Help</p>
-          <ul class="footer-links">
-            <li><a href="#">Sizing Guide</a></li>
-            <li><a href="#">Shipping Info</a></li>
-            <li><a href="#">Returns</a></li>
-            <li><a href="#">Care Guide</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
+          <div class="text-xs uppercase tracking-wide text-gray-500 mb-1">Email</div>
+          <a href="mailto:info@royaltycoongroup.com" class="text-gray-700 hover:text-black" data-hover>info@royaltycoongroup.com</a>
         </div>
+      </div>
+      <div class="soft-card p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-[var(--ink)] text-white flex items-center justify-center shrink-0">📞</div>
         <div>
-          <p class="footer-col-title">Brand</p>
-          <ul class="footer-links">
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">The Craft</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Stockists</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
+          <div class="text-xs uppercase tracking-wide text-gray-500 mb-1">Phone</div>
+          <a href="tel:+97143463003" class="text-gray-700 hover:text-black block" data-hover>+971 4 346 3003</a>
+          <a href="tel:+971547014877" class="text-gray-700 hover:text-black block" data-hover>+971 54 701 4877</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 By Nawal. All rights reserved.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
-        <a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok"></i></a>
-        <a href="#" aria-label="Pinterest"><i class="ti ti-brand-pinterest"></i></a>
+
+    <form id="contactForm" class="soft-card p-8 space-y-5">
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-gray-500 mb-2">Name</label>
+        <input type="text" required class="w-full bg-white/70 border border-black/10 rounded-xl px-4 py-3 outline-none focus:border-black/30" placeholder="Your name">
       </div>
-    </div>
-  </footer>
-
-</div>
-<!-- end page-home -->
-
-
-<!-- ══════════════════════════════════
-     PAGE: PRODUCT
-══════════════════════════════════ -->
-<div id="page-product" class="page">
-
-  <nav class="nav">
-    <a class="nav-logo" href="#">
-      <span class="nav-logo-main">By Nawal</span>
-      <span class="nav-logo-sub">Artisan Bags &amp; Accessories</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">New In</a></li>
-      <li><a href="#">Collections</a></li>
-      <li><a href="#">Bags</a></li>
-      <li><a href="#">Accessories</a></li>
-      <li><a href="#">Our Story</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="nav-icon-btn" aria-label="Search"><i class="ti ti-search"></i></button>
-      <button class="nav-icon-btn" aria-label="Wishlist"><i class="ti ti-heart"></i></button>
-      <button class="nav-icon-btn" aria-label="Cart"><i class="ti ti-shopping-bag"></i></button>
-      <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()"><i class="ti ti-menu-2"></i></button>
-    </div>
-    <div class="nav-drawer" id="nav-drawer-pd">
-      <a href="#">New In</a>
-      <a href="#">Collections</a>
-      <a href="#">Bags</a>
-      <a href="#">Accessories</a>
-      <a href="#">Our Story</a>
-    </div>
-  </nav>
-
-  <div class="pd-crumb">
-    <button class="back-btn" onclick="showHome()">
-      <i class="ti ti-arrow-left"></i> Back
-    </button>
-    &nbsp;/&nbsp; Bags &nbsp;/&nbsp; <span>The Nawal Tote '26</span>
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-gray-500 mb-2">Email</label>
+        <input type="email" required class="w-full bg-white/70 border border-black/10 rounded-xl px-4 py-3 outline-none focus:border-black/30" placeholder="you@company.com">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wide text-gray-500 mb-2">Message</label>
+        <textarea required rows="4" class="w-full bg-white/70 border border-black/10 rounded-xl px-4 py-3 outline-none focus:border-black/30" placeholder="Leave us a message"></textarea>
+      </div>
+      <button type="submit" class="liquid-btn dark w-full justify-center" data-hover><span>Submit</span></button>
+      <p id="formNote" class="text-sm text-gray-500 hidden">Thanks — your message has been noted. Our team will be in touch shortly.</p>
+    </form>
   </div>
+</section>
 
-  <div class="pd-layout">
-
-    <div class="pd-gallery">
-      <div class="pd-main">
-        <img id="pd-main-img"
-          src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346"
-          alt="The Souq Tote" />
-      </div>
-      <div class="pd-thumbs">
-        <div class="pd-thumb active" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346')">
-          <img src="https://amalayub.com/cdn/shop/files/B0BA76E9-1BB5-41CA-ABBE-88E0C26372EE.jpg?v=1779050190&width=1346" alt="View 1" />
-        </div>
-        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346')">
-          <img src="https://amalayub.com/cdn/shop/files/4D905EA1-0A33-4301-8E1D-1E1EBE0568FD.jpg?v=1779050191&width=1346" alt="View 2" />
-        </div>
-        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346')">
-          <img src="https://amalayub.com/cdn/shop/files/IMG-3418.png?v=1776413424&width=1346" alt="View 3" />
-        </div>
-        <div class="pd-thumb" onclick="swapImg(this,'https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346')">
-          <img src="https://amalayub.com/cdn/shop/files/46AE9A00-8760-4D7C-ACA4-F775DD5B3284.jpg?v=1775936750&width=1346" alt="View 4" />
-        </div>
+<!-- ================= FOOTER ================= -->
+<footer class="bg-[var(--ink)] text-white/70 pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-4 gap-10 pb-14 border-b border-white/10">
+    <div>
+      <div class="font-display font-bold text-lg text-white mb-4">ROYALTY<span class="font-normal">COON</span></div>
+      <p class="text-sm leading-relaxed mb-5">RoyaltyCoon Group of Companies is a limited liability company (LLC) that encompasses a diverse range of businesses, operating under one unified brand.</p>
+      <div class="flex gap-3">
+        <a href="https://www.facebook.com/profile.php?id=61567199948620" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20" data-hover>f</a>
+        <a href="https://www.instagram.com/royal_tycoon_goc/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20" data-hover>ig</a>
+        <a href="https://www.linkedin.com/company/royal-tycoon-group-of-companies/about/?viewAsMember=true" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20" data-hover>in</a>
       </div>
     </div>
-
-    <div class="pd-info">
-      <p class="pd-cat">2026 Collection — Totes</p>
-      <h1 class="pd-name">The Nawal Tote '26</h1>
-
-      <div class="pd-price-row">
-        <span class="pd-price">$295</span>
-      </div>
-
-      <hr class="pd-divider" />
-
-      <p class="pd-label">Colour — <span>Amethyst</span></p>
-      <div class="swatches">
-        <div class="swatch active" style="background:#6B2D82;" title="Amethyst" onclick="pickColour(this)"></div>
-        <div class="swatch" style="background:#C8963A;" title="Gold" onclick="pickColour(this)"></div>
-        <div class="swatch" style="background:#1C0A2E;" title="Midnight" onclick="pickColour(this)"></div>
-        <div class="swatch" style="background:#8B4513;" title="Cognac" onclick="pickColour(this)"></div>
-      </div>
-
-      <p class="pd-label">Size</p>
-      <div class="sizes">
-        <button class="size-btn" onclick="pickSize(this)">XS</button>
-        <button class="size-btn active" onclick="pickSize(this)">S</button>
-        <button class="size-btn" onclick="pickSize(this)">M</button>
-        <button class="size-btn" onclick="pickSize(this)">L</button>
-      </div>
-
-      <button class="pd-add" type="button">Add to Cart — $295</button>
-      <button class="pd-wish" type="button">
-        <i class="ti ti-heart"></i>&nbsp; Save to Wishlist
-      </button>
-
-      <ul class="pd-perks">
-        <li><i class="ti ti-check"></i> Full-grain vegetable-tanned leather</li>
-        <li><i class="ti ti-check"></i> Hand-stitched, limited run of 30</li>
-        <li><i class="ti ti-check"></i> Antique brass hardware</li>
-        <li><i class="ti ti-package"></i> Free shipping — delivered in 3–5 days</li>
-        <li><i class="ti ti-credit-card"></i> Buy now, pay later available</li>
+    <div>
+      <div class="text-white font-medium mb-4 text-sm uppercase tracking-wide">Our Companies</div>
+      <ul class="space-y-2 text-sm">
+        <li>General Trading</li>
+        <li><a href="http://www.thecoolfilter.ae/" target="_blank" rel="noopener" class="hover:text-white" data-hover>Water Treatment</a></li>
+        <li>Financial Services</li>
+        <li>Business Services</li>
+        <li><a href="http://www.shareentravel.com/" target="_blank" rel="noopener" class="hover:text-white" data-hover>Travel And Tourism</a></li>
+        <li>Government Services</li>
       </ul>
-
-      <div class="accordion">
-        <div class="acc-item">
-          <div class="acc-hdr" onclick="togAcc(this)">
-            Details &amp; Dimensions <i class="ti ti-plus"></i>
-          </div>
-          <div class="acc-body">
-            W 40cm × H 30cm × D 15cm. One interior zip pocket, two open slip pockets. Detachable leather shoulder strap. Magnetic snap closure.
-          </div>
-        </div>
-        <div class="acc-item">
-          <div class="acc-hdr" onclick="togAcc(this)">
-            Material &amp; Care <i class="ti ti-plus"></i>
-          </div>
-          <div class="acc-body">
-            Full-grain leather, vegetable-tanned. Wipe clean with a dry cloth. Condition with a natural leather balm every 3 months. Store stuffed in the dust bag provided.
-          </div>
-        </div>
-        <div class="acc-item">
-          <div class="acc-hdr" onclick="togAcc(this)">
-            Shipping &amp; Returns <i class="ti ti-plus"></i>
-          </div>
-          <div class="acc-body">
-            Free standard shipping on orders over $150. Express available at checkout. 30-day returns on full-price items in original condition.
-          </div>
-        </div>
-      </div>
     </div>
-
+    <div>
+      <div class="text-white font-medium mb-4 text-sm uppercase tracking-wide">&nbsp;</div>
+      <ul class="space-y-2 text-sm">
+        <li>Metal Trading</li>
+        <li>Auto Industrial</li>
+        <li>Delivery Services</li>
+        <li>Hotels And Resorts</li>
+        <li>Luxury Limousine Services</li>
+        <li>Real Estate And Developers</li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-medium mb-4 text-sm uppercase tracking-wide">Contact Info</div>
+      <ul class="space-y-3 text-sm">
+        <li><a href="https://www.google.com/maps/place/Ras+Al+Khor+Industrial+Area+-+Ras+Al+Khor+Industrial+Area+1+-+Dubai+-+United+Arab+Emirates/@25.1771948,55.3326318,16z/data=!3m1!4b1!4m6!3m5!1s0x3e5f67b60a815999:0xa5fa31866258329a!8m2!3d25.1801556!4d55.3392359!16s%2Fm%2F03qm3lv?entry=ttu" target="_blank" rel="noopener" class="hover:text-white" data-hover>Shop No 11, Ras Al Khor Industrial Area, Dubai</a></li>
+        <li><a href="mailto:info@royaltycoongroup.com" class="hover:text-white" data-hover>info@royaltycoongroup.com</a></li>
+        <li><a href="tel:+97143463003" class="hover:text-white" data-hover>+971 4 346 3003</a></li>
+        <li><a href="tel:+971547014877" class="hover:text-white" data-hover>+971 54 701 4877</a></li>
+      </ul>
+    </div>
   </div>
-</div>
-<!-- end page-product -->
+  <div class="max-w-7xl mx-auto px-6 md:px-10 pt-6 text-xs text-white/40">© 2026 RoyaltyCoon Group of Companies. All rights reserved.</div>
+</footer>
 
 <script>
-  function showProduct() {
-    document.getElementById('page-home').classList.remove('active');
-    document.getElementById('page-product').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function showHome() {
-    document.getElementById('page-product').classList.remove('active');
-    document.getElementById('page-home').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function toggleMenu() {
-    ['nav-drawer','nav-drawer-pd'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('open');
-    });
-  }
-  function swapImg(el, src) {
-    document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('pd-main-img').src = src;
-  }
-  function pickSize(el) {
-    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-  }
-  function pickColour(el) {
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-  }
-  function togAcc(hdr) {
-    const body = hdr.nextElementSibling;
-    const icon = hdr.querySelector('.ti-plus, .ti-minus');
-    const isOpen = body.classList.contains('open');
-    document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-    document.querySelectorAll('.acc-hdr i').forEach(i => { i.className = 'ti ti-plus'; });
-    if (!isOpen) {
-      body.classList.add('open');
-      if (icon) icon.className = 'ti ti-minus';
-    }
-  }
-</script>
+// ---------------- company data ----------------
+const companies = [
+  {name:"General Trading", img:"32543353", url:null},
+  {name:"Travel And Tourism", img:"2417260", url:"http://www.shareentravel.com/"},
+  {name:"Businessman Services", img:"8425058", url:null},
+  {name:"Water Treatment", img:"5712211", url:"http://www.thecoolfilter.ae/"},
+  {name:"Government Services", img:"5416746", url:null},
+  {name:"Financial Services", img:"18804128", url:null},
+  {name:"Real Estate And Developers", img:"19969245", url:null},
+  {name:"Hotels And Resorts", img:"258154", url:null},
+  {name:"Metal Trading", img:"36003986", url:null},
+  {name:"Delivery Services", img:"6169670", url:null},
+  {name:"Luxury Limousine Services", img:"5880098", url:null},
+  {name:"Auto Industrial", img:"19233057", url:null},
+];
 
+const grid = document.getElementById('companyGrid');
+companies.forEach(c=>{
+  const imgUrl = `https://images.pexels.com/photos/${c.img}/pexels-photo-${c.img}.jpeg?auto=compress&cs=tinysrgb&w=800`;
+  const card = document.createElement(c.url ? 'a' : 'div');
+  if(c.url){ card.href = c.url; card.target = '_blank'; card.rel='noopener'; card.setAttribute('data-hover',''); }
+  card.className = 'company-card group block';
+  card.innerHTML = `
+    <div class="overflow-hidden h-52">
+      <img src="${imgUrl}" alt="${c.name}" class="metal-image w-full h-full object-cover">
+    </div>
+    <div class="p-5 flex items-center justify-between bg-white">
+      <h3 class="font-display font-bold text-base">${c.name}</h3>
+      <span class="text-xs ${c.url ? 'text-gray-700' : 'text-gray-400'}">${c.url ? 'Visit Site →' : 'Coming Soon'}</span>
+    </div>`;
+  grid.appendChild(card);
+});
+
+// ---------------- custom cursor ----------------
+const cursor = document.getElementById('cursor');
+window.addEventListener('mousemove', e=>{
+  cursor.style.left = e.clientX+'px';
+  cursor.style.top = e.clientY+'px';
+});
+document.addEventListener('mouseover', e=>{
+  if(e.target.closest('[data-hover], a, button, input, textarea')){ cursor.classList.add('hovering'); }
+});
+document.addEventListener('mouseout', e=>{
+  if(e.target.closest('[data-hover], a, button, input, textarea')){ cursor.classList.remove('hovering'); }
+});
+
+// ---------------- GSAP hero entrance ----------------
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.hero-word').forEach(w=>{
+  w.style.display='inline-block';
+});
+
+const tl = gsap.timeline({defaults:{ease:'power4.out'}});
+tl.from('.hero-word', {y:120, skewY:6, opacity:0, duration:1.1, stagger:.15})
+  .from('.hero-sub', {y:30, opacity:0, duration:.8}, '-=.5')
+  .from('.hero-cta', {y:24, opacity:0, duration:.7}, '-=.5')
+  .from('#glassNav', {y:-40, opacity:0, duration:.8}, '-=.9')
+  .from('.float-card', {y:40, opacity:0, duration:.7, stagger:.1}, '-=.4');
+
+// ---------------- company cards scroll reveal ----------------
+gsap.utils.toArray('.company-card').forEach((el,i)=>{
+  gsap.from(el, {
+    scrollTrigger:{trigger:el, start:'top 90%'},
+    y:40, opacity:0, duration:.7, delay:(i%3)*0.08, ease:'power3.out'
+  });
+});
+
+// ---------------- core values bars ----------------
+gsap.utils.toArray('.value-item').forEach(item=>{
+  const target = parseInt(item.dataset.value,10);
+  const fill = item.querySelector('.value-fill');
+  const num = item.querySelector('.value-num');
+  ScrollTrigger.create({
+    trigger:item, start:'top 85%', once:true,
+    onEnter:()=>{
+      gsap.to(fill, {width:target+'%', duration:1.4, ease:'power3.out'});
+      gsap.to({v:0}, {v:target, duration:1.4, ease:'power3.out', onUpdate:function(){ num.textContent = Math.round(this.targets()[0].v)+'%'; }});
+    }
+  });
+});
+
+// ---------------- about / services fade-ins ----------------
+gsap.utils.toArray('#about, #services, #values, #contact').forEach(sec=>{
+  gsap.from(sec.querySelectorAll(':scope > div > *'), {
+    scrollTrigger:{trigger:sec, start:'top 80%'},
+    y:30, opacity:0, duration:.8, stagger:.06, ease:'power3.out'
+  });
+});
+
+// ---------------- contact form demo ----------------
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('formNote').classList.remove('hidden');
+  this.reset();
+});
+</script>
 </body>
 </html>
